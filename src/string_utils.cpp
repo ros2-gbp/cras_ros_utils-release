@@ -447,7 +447,7 @@ std::string iconvConvert(
   // Read the input until there is something to read
   while (inbuf_unread_size > 0) {
     // iconv transliteration doesn't work with the default C locale, we need a UTF-8 one
-    TempLocale temp_locale(LC_CTYPE, locale_name.value_or("en_US.UTF-8").c_str());
+    TempLocale temp_locale(LC_CTYPE, locale_name.value_or("C.UTF-8").c_str());
     errno = 0;
     if (iconv(conv_desc, &inbuf, &inbuf_unread_size, &outbuf, &outbuf_unused_size) != static_cast<size_t>(-1)) {
       // Clean up the conversion descriptor and flush possible "shift sequences"
