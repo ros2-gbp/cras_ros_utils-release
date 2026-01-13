@@ -1,0 +1,286 @@
+ros-jazzy-cras-topic-tools (3.0.0-2noble) noble; urgency=high
+
+  * Temporarily disabled cras_msgs for release.
+    The dependency will be put back once cras_msgs is released.
+  * Improved build files.
+  * docs: Updated readmes.
+  * Fixed linter.
+  * count_messages: Fixed launching in component container.
+  * change_header: Added --report CLI option.
+  * count_messages: Default to BEST_AVAILABLE QoS.
+  * Initial ROS 2 port.
+  * Contributors: Martin Pecka
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Mon, 12 Jan 2026 23:00:00 -0000
+
+ros-jazzy-cras-topic-tools (2.5.1-2noble) noble; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Mon, 17 Feb 2025 23:00:00 -0000
+
+ros-jazzy-cras-topic-tools (2.5.0-2noble) noble; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Wed, 12 Feb 2025 23:00:00 -0000
+
+ros-jazzy-cras-topic-tools (2.4.8-2noble) noble; urgency=high
+
+  * Added support for ros::message_traits operations on cras::ShapeShifter on Melodic.
+  * Contributors: Martin Pecka
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Mon, 06 Jan 2025 23:00:00 -0000
+
+ros-jazzy-cras-topic-tools (2.4.7-2noble) noble; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Wed, 11 Dec 2024 23:00:00 -0000
+
+ros-jazzy-cras-topic-tools (2.4.6-2noble) noble; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Wed, 11 Dec 2024 23:00:00 -0000
+
+ros-jazzy-cras-topic-tools (2.4.5-2noble) noble; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Fri, 01 Nov 2024 23:00:00 -0000
+
+ros-jazzy-cras-topic-tools (2.4.4-2noble) noble; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Fri, 13 Sep 2024 22:00:00 -0000
+
+ros-jazzy-cras-topic-tools (2.4.3-2noble) noble; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Fri, 13 Sep 2024 22:00:00 -0000
+
+ros-jazzy-cras-topic-tools (2.4.2-2noble) noble; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Wed, 04 Sep 2024 22:00:00 -0000
+
+ros-jazzy-cras-topic-tools (2.4.1-2noble) noble; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Tue, 03 Sep 2024 22:00:00 -0000
+
+ros-jazzy-cras-topic-tools (2.4.0-2noble) noble; urgency=high
+
+  * Little fixes suggested by linters.
+  * priority_mux: Added option to invert disable_topic.
+  * Contributors: Martin Pecka
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Tue, 03 Sep 2024 22:00:00 -0000
+
+ros-jazzy-cras-topic-tools (2.3.9-2noble) noble; urgency=high
+
+  * Removed catkin_lint buildfarm hacks.
+  * Contributors: Martin Pecka
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Mon, 26 Feb 2024 23:00:00 -0000
+
+ros-jazzy-cras-topic-tools (2.3.8-2noble) noble; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Thu, 11 Jan 2024 23:00:00 -0000
+
+ros-jazzy-cras-topic-tools (2.3.7-2noble) noble; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Mon, 08 Jan 2024 23:00:00 -0000
+
+ros-jazzy-cras-topic-tools (2.3.6-2noble) noble; urgency=high
+
+  * Made use of the simplified syntax of node_from_nodelet.
+  * Contributors: Martin Pecka
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Mon, 08 Jan 2024 23:00:00 -0000
+
+ros-jazzy-cras-topic-tools (2.3.5-2noble) noble; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Mon, 20 Nov 2023 23:00:00 -0000
+
+ros-jazzy-cras-topic-tools (2.3.4-2noble) noble; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Tue, 24 Oct 2023 22:00:00 -0000
+
+ros-jazzy-cras-topic-tools (2.3.3-2noble) noble; urgency=high
+
+  * priority_mux: Fixed parameters incorrectly reported as required.
+  * Contributors: Martin Pecka
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Thu, 05 Oct 2023 22:00:00 -0000
+
+ros-jazzy-cras-topic-tools (2.3.2-2noble) noble; urgency=high
+
+  * priority_mux: Duration of the wait before publishing the first message is now configurable.
+  * Contributors: Martin Pecka
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Thu, 05 Oct 2023 22:00:00 -0000
+
+ros-jazzy-cras-topic-tools (2.3.1-2noble) noble; urgency=high
+
+  * shape_shifter: Fixed detection of header in messages.
+  * Contributors: Martin Pecka
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Wed, 12 Jul 2023 22:00:00 -0000
+
+ros-jazzy-cras-topic-tools (2.3.0-2noble) noble; urgency=high
+
+  * priority_mux: Added possibility to send a message just before disabling a topic.
+  * shape_shifter: Improved getHeader().
+  * Increased minimum CMake version to 3.10.2.
+  * priority_mux: Total rewrite, now it should really work.
+  * Contributors: Martin Pecka
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Tue, 11 Jul 2023 22:00:00 -0000
+
+ros-jazzy-cras-topic-tools (2.2.3-2noble) noble; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Thu, 15 Jun 2023 22:00:00 -0000
+
+ros-jazzy-cras-topic-tools (2.2.2-2noble) noble; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Sun, 14 May 2023 22:00:00 -0000
+
+ros-jazzy-cras-topic-tools (2.2.1-2noble) noble; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Sun, 14 May 2023 22:00:00 -0000
+
+ros-jazzy-cras-topic-tools (2.2.0-2noble) noble; urgency=high
+
+  * Added heartbeat.
+  * Simplified lazy subscriber classes and nodelet code. Added ~tcp_no_delay param to most nodelets. API breaks included, but hopefully nothing will be affected.
+    API breaks:
+    - LazySubscriberBase->ConditionalSubscriber
+    - LazySubscriber: callback is now passed as parameter instead of being a virtual member function
+    - GenericLazyPubSub: callback is now passed as parameter instead of being a virtual member function
+    - the nodelets no longer have a dedicated PubSub object that would be reusable elsewhere (the minimum probability of reuse does not outweigh the code complications it brings)
+  * Contributors: Martin Pecka
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Sat, 08 Apr 2023 22:00:00 -0000
+
+ros-jazzy-cras-topic-tools (2.1.2-2noble) noble; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Thu, 09 Feb 2023 23:00:00 -0000
+
+ros-jazzy-cras-topic-tools (2.1.1-2noble) noble; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Tue, 07 Feb 2023 23:00:00 -0000
+
+ros-jazzy-cras-topic-tools (2.1.0-2noble) noble; urgency=high
+
+  * Added cras::ShapeShifter as a memory-safe option for Melodic.
+  * Added a method to convert a message instance to ShapeShifter.
+  * Contributors: Martin Pecka
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Tue, 07 Feb 2023 23:00:00 -0000
+
+ros-jazzy-cras-topic-tools (2.0.10-2noble) noble; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Wed, 23 Nov 2022 23:00:00 -0000
+
+ros-jazzy-cras-topic-tools (2.0.9-2noble) noble; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Wed, 23 Nov 2022 23:00:00 -0000
+
+ros-jazzy-cras-topic-tools (2.0.8-2noble) noble; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Wed, 23 Nov 2022 23:00:00 -0000
+
+ros-jazzy-cras-topic-tools (2.0.7-2noble) noble; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Wed, 23 Nov 2022 23:00:00 -0000
+
+ros-jazzy-cras-topic-tools (2.0.6-2noble) noble; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Wed, 23 Nov 2022 23:00:00 -0000
+
+ros-jazzy-cras-topic-tools (2.0.5-2noble) noble; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Sat, 22 Oct 2022 22:00:00 -0000
+
+ros-jazzy-cras-topic-tools (2.0.4-2noble) noble; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Thu, 13 Oct 2022 22:00:00 -0000
+
+ros-jazzy-cras-topic-tools (2.0.3-2noble) noble; urgency=high
+
+  * Lower test_repeat thresholds even more, OSRF buildfarm is really bad at this
+  * cras_py_common: Extended functionality to get closer to cras_cpp_common.
+  * Improved readmes and added more badges to them.
+  * Contributors: Martin Pecka
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Thu, 06 Oct 2022 22:00:00 -0000
+
+ros-jazzy-cras-topic-tools (2.0.2-2noble) noble; urgency=high
+
+  * Added option to change_header to apply current ROS time to stamp.
+  * De-flake throttle test and enable catkin_lint when it has chance to run correctly.
+  * Satisfy more pedantic Noetic linter.
+  * Added website links.
+  * Add linters and licenses.
+  * Fixed dependency.
+  * Added linters.
+  * Fix catkin_lint, re-enable testing.
+  * Improved comments in nodelet.xml.
+  * De-flake and speed up throttle test.
+  * De-flake and speed up repeater test.
+  * De-flake and speed up relay test.
+  * De-flake and speed up filter test.
+  * De-flake and speed up change_header test.
+  * Avoid threading errors when stopping nodes created by node_from_nodelet.
+  * Fix compilation on GCC 7.
+  * Contributors: Martin Pecka
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Sun, 28 Aug 2022 22:00:00 -0000
+
+ros-jazzy-cras-topic-tools (2.0.1-2noble) noble; urgency=high
+
+  * Moved hack_frame_id from cras_py_common to cras_topic_tools.
+  * Moved launch files.
+  * Merged cras_nodelet_topic_tools with cras_topic_tools, moved repeater and joy_repeater from cras_cpp_common to cras_topic_tools.
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Thu, 25 Aug 2022 22:00:00 -0000
+
+
