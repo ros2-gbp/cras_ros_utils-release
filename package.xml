@@ -37,7 +37,7 @@ SPDX-FileCopyrightText: Czech Technical University in Prague
   <build_depend>tf2_geometry_msgs</build_depend>
 
   <exec_depend>backward_ros</exec_depend>
-  <exec_depend>language-pack-en</exec_depend>  <!-- Needed to get en_US.UTF-8 locale -->
+  <!--exec_depend>language-pack-en</exec_depend-->  <!-- Not available on Debian, use C.UTF-8 instead -->
   <exec_depend>libboost-dev</exec_depend>
   <exec_depend>tf2_geometry_msgs</exec_depend>
 
