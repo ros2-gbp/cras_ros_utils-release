@@ -514,7 +514,7 @@ std::string iconvConvert(const std::string& toEncoding, const std::string& fromE
   while (inbufUnreadSize > 0)
   {
     // iconv transliteration doesn't work with the default C locale, we need a UTF-8 one
-    TempLocale tempLocale(LC_CTYPE, localeName.value_or("en_US.UTF-8").c_str());
+    TempLocale tempLocale(LC_CTYPE, localeName.value_or("C.UTF-8").c_str());
     errno = 0;
     if (iconv(convDesc, &inbuf, &inbufUnreadSize, &outbuf, &outbufUnusedSize) != static_cast<size_t>(-1))
     {
