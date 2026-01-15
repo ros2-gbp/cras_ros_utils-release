@@ -1,0 +1,361 @@
+ros-rolling-cras-cpp-common (3.0.0-2bookworm) bookworm; urgency=high
+
+  * Improved build files, added convenience CMake target cras_cpp_common::cras_cpp_common .
+  * Fix build on Rolling.
+  * docs: Updated readmes.
+  * log_utils: Ported to ROS 2.
+  * expected: Now provided as a CMake target and automatically installed the library.
+  * string_utils: Returned cras::format and renamed to cras::snprintf.
+  * time_utils: Added SimpleClockInterface and float_secs().
+  * Ported tf2_utils to ROS 2.
+  * Added test_utils.
+  * ROS 2 port of the rest of string_utils.
+  * ROS 2 port of rate_limiter.
+  * ROS 2 port of time_utils.
+  * Removed std::bind_front() shim.
+  * Switched to C++20 and removed shims for older compilers.
+  * Removed invalid rosdoc config.
+  * Fixed wrong QoS initialization.
+  * Initial ROS 2 port.
+  * Fixed handling of char and signed char parameters on platforms where char is unsigned (e.g. arm64).
+  * Contributors: Martin Pecka
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Mon, 12 Jan 2026 23:00:00 -0000
+
+ros-rolling-cras-cpp-common (2.5.1-2bookworm) bookworm; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Mon, 17 Feb 2025 23:00:00 -0000
+
+ros-rolling-cras-cpp-common (2.5.0-2bookworm) bookworm; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Wed, 12 Feb 2025 23:00:00 -0000
+
+ros-rolling-cras-cpp-common (2.4.8-2bookworm) bookworm; urgency=high
+
+  * Added GetParamConvertingOptions() to ease defining converting getParam() that works with GCC 7.
+  * Added NodeWithOptionalMaster.
+  * Improved compatibility with newer compilers.
+    Resolves https://github.com/RoboStack/ros-noetic/pull/501#issuecomment-2567224502 .
+  * Contributors: Martin Pecka
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Mon, 06 Jan 2025 23:00:00 -0000
+
+ros-rolling-cras-cpp-common (2.4.7-2bookworm) bookworm; urgency=high
+
+  * Fixed installation of nodelet_manager_sharing_tf_buffer.
+  * Contributors: Martin Pecka
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Wed, 11 Dec 2024 23:00:00 -0000
+
+ros-rolling-cras-cpp-common (2.4.6-2bookworm) bookworm; urgency=high
+
+  * nodelet_utils: Allowed accessing the shared_ptr of the shared TF buffer.
+  * node_from_nodelet: Worked around the bug where remapping private topics was impossible for anonymous nodes.
+  * tf2_utils: Added TfMessageFilter compatible with log_utils.
+  * time_utils: Added converters between ros::Time and struct tm.
+  * Fixed a few printf format issues.
+  * string_utils: Handle possible error in vsnprintf. Added printf-format attributes to cras::format() to enable compile-time checks of format strings.
+  * string_utils: Added iconvConvert(), transliterateToAscii() and toValidRosName() functions.
+  * Contributors: Martin Pecka
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Wed, 11 Dec 2024 23:00:00 -0000
+
+ros-rolling-cras-cpp-common (2.4.5-2bookworm) bookworm; urgency=high
+
+  * string_utils: Added date/time parsing methods.
+  * string_utils: Added methods for parsing integers with known radix.
+  * diag_utils: Added tests for offline diag updater.
+  * diag_utils: Added offline diag updater.
+  * node_from_nodelet: Added support for stopping the node when requestStop() has been called in the nodelet code.
+  * Contributors: Martin Pecka
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Fri, 01 Nov 2024 23:00:00 -0000
+
+ros-rolling-cras-cpp-common (2.4.4-2bookworm) bookworm; urgency=high
+
+  * Fixed roslint.
+  * Contributors: Martin Pecka
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Fri, 13 Sep 2024 22:00:00 -0000
+
+ros-rolling-cras-cpp-common (2.4.3-2bookworm) bookworm; urgency=high
+
+  * Fixed build with ros_comm 1.17.0 .
+  * Contributors: Martin Pecka
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Fri, 13 Sep 2024 22:00:00 -0000
+
+ros-rolling-cras-cpp-common (2.4.2-2bookworm) bookworm; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Wed, 04 Sep 2024 22:00:00 -0000
+
+ros-rolling-cras-cpp-common (2.4.1-2bookworm) bookworm; urgency=high
+
+  * Fixed roslint
+  * Contributors: Martin Pecka
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Tue, 03 Sep 2024 22:00:00 -0000
+
+ros-rolling-cras-cpp-common (2.4.0-2bookworm) bookworm; urgency=high
+
+  * Added small_map and fixed concurrency problems in log_utils.
+  * Updated fast_float to 6.1.5.
+  * node_from_nodelet: Fixed error message
+  * Contributors: Martin Pecka
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Tue, 03 Sep 2024 22:00:00 -0000
+
+ros-rolling-cras-cpp-common (2.3.9-2bookworm) bookworm; urgency=high
+
+  * Removed catkin_lint buildfarm hacks.
+  * Updated to fast_float 6.1.0 .
+  * Contributors: Martin Pecka
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Mon, 26 Feb 2024 23:00:00 -0000
+
+ros-rolling-cras-cpp-common (2.3.8-2bookworm) bookworm; urgency=high
+
+  * Fixed FindFilesystem CMake module usage of try_compile
+  * Contributors: Martin Pecka
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Thu, 11 Jan 2024 23:00:00 -0000
+
+ros-rolling-cras-cpp-common (2.3.7-2bookworm) bookworm; urgency=high
+
+  * node_from_nodelet: Fix syntax for Melodic.
+  * Contributors: Martin Pecka
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Mon, 08 Jan 2024 23:00:00 -0000
+
+ros-rolling-cras-cpp-common (2.3.6-2bookworm) bookworm; urgency=high
+
+  * node_from_nodelet: Implemented a simplified version that doesn't need the nodelet header file.
+  * node_from_nodelet: Fixed a bug with missing return 0 at the end of main.
+  * Contributors: Martin Pecka
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Mon, 08 Jan 2024 23:00:00 -0000
+
+ros-rolling-cras-cpp-common (2.3.5-2bookworm) bookworm; urgency=high
+
+  * param_utils: Added getParam() specialization for geometry_msgs/Pose messages.
+  * nodelet_utils: Added Resettable interface to NodeletWithSharedTfBuffer.
+  * Added Resettable interface compatible with cras_py_common.
+  * time_utils: Added saturateAdd().
+  * Contributors: Martin Pecka
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Mon, 20 Nov 2023 23:00:00 -0000
+
+ros-rolling-cras-cpp-common (2.3.4-2bookworm) bookworm; urgency=high
+
+  * Do not use -march=native optimizations for cras_tf2_sensor_msgs. More generic platform-specific optimizations are used.
+  * Contributors: Martin Pecka
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Tue, 24 Oct 2023 22:00:00 -0000
+
+ros-rolling-cras-cpp-common (2.3.3-2bookworm) bookworm; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Thu, 05 Oct 2023 22:00:00 -0000
+
+ros-rolling-cras-cpp-common (2.3.2-2bookworm) bookworm; urgency=high
+
+  * Fix finding std::filesystem in CMake if a non-default launguage standard is used.
+  * Contributors: Martin Pecka
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Thu, 05 Oct 2023 22:00:00 -0000
+
+ros-rolling-cras-cpp-common (2.3.1-2bookworm) bookworm; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Wed, 12 Jul 2023 22:00:00 -0000
+
+ros-rolling-cras-cpp-common (2.3.0-2bookworm) bookworm; urgency=high
+
+  * Increased minimum CMake version to 3.10.2.
+  * log_utils: Fixed a potential segfault when instances of MemoryLogHelper get recycled.
+  * Contributors: Martin Pecka
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Tue, 11 Jul 2023 22:00:00 -0000
+
+ros-rolling-cras-cpp-common (2.2.3-2bookworm) bookworm; urgency=high
+
+  * Install node_from_nodelet targets in PACKAGE_BIN and not GLOBAL_BIN
+  * Contributors: Martin Pecka
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Thu, 15 Jun 2023 22:00:00 -0000
+
+ros-rolling-cras-cpp-common (2.2.2-2bookworm) bookworm; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Sun, 14 May 2023 22:00:00 -0000
+
+ros-rolling-cras-cpp-common (2.2.1-2bookworm) bookworm; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Sun, 14 May 2023 22:00:00 -0000
+
+ros-rolling-cras-cpp-common (2.2.0-2bookworm) bookworm; urgency=high
+
+  * Fixed parseFloat()/parseDouble() tests to reflect the behavior change in fast_float library.
+  * Update fast_float to v4.0.
+  * Update fast_float to v3.10.0.
+  * Update tl/expected.
+  * Update tl/optional to v1.1.0.
+  * string_utils: Added toLower/toUpper.
+  * Added std::span shim.
+  * Contributors: Martin Pecka
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Sat, 08 Apr 2023 22:00:00 -0000
+
+ros-rolling-cras-cpp-common (2.1.2-2bookworm) bookworm; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Thu, 09 Feb 2023 23:00:00 -0000
+
+ros-rolling-cras-cpp-common (2.1.1-2bookworm) bookworm; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Tue, 07 Feb 2023 23:00:00 -0000
+
+ros-rolling-cras-cpp-common (2.1.0-2bookworm) bookworm; urgency=high
+
+  * log_utils: Added a method to set logger to HasLogger class.
+  * c_api: Added outputRosMessage() method that directly serializes ROS messages into allocated buffers.
+  * log_utils: Added MemoryLogHelper, reworked the interface of LogHelper a bit.
+  * Completely reworked log_utils to use macros instead of functions.
+    This was needed because of the static log_location variables inside ROS_ macros - e.g. _ONCE was only triggered once regardless of where was it called from. There were also not so helpful file:line data in the logged messages.
+    Backwards compatibility was kept 99%, but there are subtle cases where it will fail - e.g. if there was this->log->logError() right after an if or else without braces.
+  * Added c_api.h.
+  * Added cras::expected.
+  * Fixed doxygen configuration and a few documentation errors.
+    To get a clean rosdoc_lite run, set
+    INPUT_FILTER = "sed 's/([ <])::/1/g'"
+    in doxy.template in rosdoc_lite .
+  * xmlrpc_value_utils: Added conversion to dynamic_reconfigure/Config message.
+  * string_utils: Added cras::strip().
+  * Added std::any shim.
+  * Contributors: Martin Pecka
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Tue, 07 Feb 2023 23:00:00 -0000
+
+ros-rolling-cras-cpp-common (2.0.10-2bookworm) bookworm; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Wed, 23 Nov 2022 23:00:00 -0000
+
+ros-rolling-cras-cpp-common (2.0.9-2bookworm) bookworm; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Wed, 23 Nov 2022 23:00:00 -0000
+
+ros-rolling-cras-cpp-common (2.0.8-2bookworm) bookworm; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Wed, 23 Nov 2022 23:00:00 -0000
+
+ros-rolling-cras-cpp-common (2.0.7-2bookworm) bookworm; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Wed, 23 Nov 2022 23:00:00 -0000
+
+ros-rolling-cras-cpp-common (2.0.6-2bookworm) bookworm; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Wed, 23 Nov 2022 23:00:00 -0000
+
+ros-rolling-cras-cpp-common (2.0.5-2bookworm) bookworm; urgency=high
+
+  * Added support for std::array parameters.
+  * Contributors: Martin Pecka
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Sat, 22 Oct 2022 22:00:00 -0000
+
+ros-rolling-cras-cpp-common (2.0.4-2bookworm) bookworm; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Thu, 13 Oct 2022 22:00:00 -0000
+
+ros-rolling-cras-cpp-common (2.0.3-2bookworm) bookworm; urgency=high
+
+  * cras_py_common: Extended functionality to get closer to cras_cpp_common.
+  * Improved readmes and added more badges to them.
+  * Contributors: Martin Pecka
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Thu, 06 Oct 2022 22:00:00 -0000
+
+ros-rolling-cras-cpp-common (2.0.2-2bookworm) bookworm; urgency=high
+
+  * De-flake throttle test and enable catkin_lint when it has chance to run correctly.
+  * Add linters and licenses.
+  * Set up roslaunch-check for test files.
+  * added catkin_lint
+  * added roslint, fixed issues.
+  * catkin_lint, moved external folder inside include/project to avoid collisions with other projects.
+  * Avoid threading errors when stopping nodes created by node_from_nodelet.
+  * time_utils: Fix build on 32bit armhf.
+  * Contributors: Martin Pecka
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Sun, 28 Aug 2022 22:00:00 -0000
+
+ros-rolling-cras-cpp-common (2.0.1-2bookworm) bookworm; urgency=high
+
+  * Added LICENSE file.
+  * Improved node_from_nodelet to use node logger instead of nodelet logger.
+  * Added Github Actions CI.
+  * Increased test coverage, fixed bug in filter diagnostics.
+  * tf2_utils: Added convenience methods getRoll(), getPitch() and getYaw().
+  * filter_utils: Adapt to upstream changes adding FilterChain::getFilters() method.
+  * string_utils: Allowed to limit replace() only to the beginning or end of the string.
+  * string_utils: Added parseDouble() and friends.
+  * node_from_nodelet.cmake: Made autogenerated target names less prone to naming conflicts.
+  * Added more logging function variants.
+  * Added support for std::string format in LogHelper.
+  * Fix logging macros to log under correct rosconsole logger.
+  * Added cras_node_from_nodelet() CMake function.
+  * Better support for custom data types in getParam() functions.
+  * Rename test targets so that their names do not conflict with other projects.
+  * Compatibility with GCC 9+.
+  * Fixed invalid rate conversion.
+  * Backwards compatibility for StatefulNodelet::shutdown().
+  * Improved CMakeLists.txt and header guard placement.
+  * Merged cras_nodelet_topic_tools with cras_topic_tools, moved repeater and joy_repeater from cras_cpp_common to cras_topic_tools.
+  * Implemented rate limiters.
+  * Refactored nodelet_manager_sharing_tf_buffer and added tests for it.
+  * Added urdf_utils.h.
+  * Improved tf2_sensor_msgs.h and added test.
+  * Improved set_utils.hpp.
+  * Added better shim for std::optional. It now provides all relevant features.
+  * Added more diagnostics to filter_chain_nodelet.hpp.
+  * Added shim for std::bind_front into functional.hpp.
+  * Added running_stats.hpp implementing Welford's running mean and variance computation.
+  * Improved filter_chain_nodelet.hpp, added tests.
+  * Improved cloud.hpp, added tests.
+  * Reorganize filter_utils directory structure.
+  * Improved the interface of diag_utils and node_utils, added tests. Added message_utils.
+  * Improved the interface of nodelet_utils, added tests. Added thread_utils with tests.
+  * XmlRpcValue docs and code reliability.
+  * Better test coverage of param_utils. Improved Eigen getParam() interface.
+  * Improved getParam() behavior, added test_param_utils.
+  * First part of upgrade: log_utils, param_utils, filter_utils, node_utils, xmlrpc, cloud.
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Thu, 25 Aug 2022 22:00:00 -0000
+
+
