@@ -1,0 +1,12 @@
+Source: ros-rolling-cras-lint
+Section: misc
+Priority: optional
+Maintainer: Martin Pecka <peckama2@fel.cvut.cz>
+Build-Depends: debhelper (>= 9.0.0), ros-rolling-ament-cmake-core, ros-rolling-ament-cmake-test, ros-rolling-ament-lint-common <!nocheck>, ros-rolling-ros-workspace
+Homepage: https://wiki.ros.org/cras_bag_tools
+Standards-Version: 3.9.2
+
+Package: ros-rolling-cras-lint
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-rolling-ament-cmake-core, ros-rolling-ament-cmake-test, ros-rolling-ament-lint-common, ros-rolling-ros-workspace
+Description: Various utilities to work with bag files
