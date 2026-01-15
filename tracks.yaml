@@ -70,10 +70,10 @@ tracks:
     last_version: 3.0.0
     name: upstream
     patches: null
-    release_inc: '2'
+    release_inc: '1'
     release_repo_url: git@github.com:ros2-gbp/cras_ros_utils-release.git
     release_tag: :{version}
-    ros_distro: jazzy
+    ros_distro: rolling
     vcs_type: git
     vcs_uri: https://github.com/ctu-vras/ros-utils.git
     version: :{auto}
