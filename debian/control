@@ -1,0 +1,12 @@
+Source: ros-rolling-cras-topic-tools
+Section: misc
+Priority: optional
+Maintainer: Martin Pecka <peckama2@fel.cvut.cz>
+Build-Depends: debhelper (>= 9.0.0), libcxxopts-dev, ros-rolling-ament-cmake, ros-rolling-ament-cmake-gen-version-h, ros-rolling-cras-cpp-common, ros-rolling-cras-lint <!nocheck>, ros-rolling-rclcpp, ros-rolling-rclcpp-components, ros-rolling-std-msgs, ros-rolling-topic-tools, ros-rolling-ros-workspace
+Homepage: https://wiki.ros.org/cras_topic_tools
+Standards-Version: 3.9.2
+
+Package: ros-rolling-cras-topic-tools
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-rolling-cras-cpp-common, ros-rolling-rclcpp, ros-rolling-rclcpp-components, ros-rolling-std-msgs, ros-rolling-topic-tools, ros-rolling-ros-workspace
+Description: Nodes and components for safe and efficient manipulation with topics
