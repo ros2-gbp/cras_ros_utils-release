@@ -1,0 +1,64 @@
+From db1b25759b28e24ccc3373817e73bb38bb73613f Mon Sep 17 00:00:00 2001
+From: Martin Pecka <peckama2@fel.cvut.cz>
+Date: Tue, 13 Jan 2026 22:01:01 +0100
+Subject: [PATCH] Use C.UTF-8 locale instead of en_US.UTF-8 on Debian.
+
+---
+ package.xml                | 2 +-
+ src/string_utils.cpp       | 2 +-
+ test/test_string_utils.cpp | 8 ++++----
+ 3 files changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/package.xml b/package.xml
+index 3ed4ab9..81969b1 100644
+--- a/package.xml
++++ b/package.xml
+@@ -37,7 +37,7 @@ SPDX-FileCopyrightText: Czech Technical University in Prague
+   <build_depend>tf2_geometry_msgs</build_depend>
+ 
+   <exec_depend>backward_ros</exec_depend>
+-  <exec_depend>language-pack-en</exec_depend>  <!-- Needed to get en_US.UTF-8 locale -->
++  <!--exec_depend>language-pack-en</exec_depend-->  <!-- Not available on Debian, use C.UTF-8 instead -->
+   <exec_depend>libboost-dev</exec_depend>
+   <exec_depend>tf2_geometry_msgs</exec_depend>
+ 
+diff --git a/src/string_utils.cpp b/src/string_utils.cpp
+index 5532a0e..4a23a15 100644
+--- a/src/string_utils.cpp
++++ b/src/string_utils.cpp
+@@ -514,7 +514,7 @@ std::string iconvConvert(const std::string& toEncoding, const std::string& fromE
+   while (inbufUnreadSize > 0)
+   {
+     // iconv transliteration doesn't work with the default C locale, we need a UTF-8 one
+-    TempLocale tempLocale(LC_CTYPE, localeName.value_or("en_US.UTF-8").c_str());
++    TempLocale tempLocale(LC_CTYPE, localeName.value_or("C.UTF-8").c_str());
+     errno = 0;
+     if (iconv(convDesc, &inbuf, &inbufUnreadSize, &outbuf, &outbufUnusedSize) != static_cast<size_t>(-1))
+     {
+diff --git a/test/test_string_utils.cpp b/test/test_string_utils.cpp
+index 1571821..39d3844 100644
+--- a/test/test_string_utils.cpp
++++ b/test/test_string_utils.cpp
+@@ -1433,15 +1433,15 @@ TEST(StringUtils, TempLocale)  // NOLINT
+ 
+   {
+     EXPECT_STREQ(currLocale, setlocale(LC_ALL, nullptr));
+-    TempLocale l(LC_ALL, "en_US.UTF-8");
+-    EXPECT_STREQ("en_US.UTF-8", setlocale(LC_ALL, nullptr));
++    TempLocale l(LC_ALL, "C.UTF-8");
++    EXPECT_STREQ("C.UTF-8", setlocale(LC_ALL, nullptr));
+   }
+   EXPECT_STREQ(currLocale, setlocale(LC_ALL, nullptr));
+ 
+   {
+     EXPECT_STREQ(currLocale, setlocale(LC_ALL, nullptr));
+-    TempLocale l(LC_ALL, "en_US.UTF-8");
+-    EXPECT_STREQ("en_US.UTF-8", setlocale(LC_ALL, nullptr));
++    TempLocale l(LC_ALL, "C.UTF-8");
++    EXPECT_STREQ("C.UTF-8", setlocale(LC_ALL, nullptr));
+   }
+   EXPECT_STREQ(currLocale, setlocale(LC_ALL, nullptr));
+ }
+-- 
+2.25.1
+
