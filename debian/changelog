@@ -1,0 +1,248 @@
+ros-rolling-cras-bag-tools (3.0.0-2bookworm) bookworm; urgency=high
+
+  * Better ROS 2 format.
+  * docs: Updated readmes.
+  * Improved and fixed extract_images.
+  * Initial port of extract_images.
+  * Initial ROS 2 port.
+  * Contributors: Martin Pecka
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Mon, 12 Jan 2026 23:00:00 -0000
+
+ros-rolling-cras-bag-tools (2.5.1-2bookworm) bookworm; urgency=high
+
+  * Fixed running on Jetsons.
+  * Contributors: Martin Pecka
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Mon, 17 Feb 2025 23:00:00 -0000
+
+ros-rolling-cras-bag-tools (2.5.0-2bookworm) bookworm; urgency=high
+
+  * filter_bag: Split into a reusable module, added more filters and example configs.
+  * topic_set: Support iteration over TopicSet.
+  * extract_images: Support global speedup setting.
+  * filter_bag: Refactor.
+  * filter_bag: Rewritten to use image_transport_codecs
+  * Added extract_images
+  * Added filter_bag
+  * Contributors: Martin Pecka
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Wed, 12 Feb 2025 23:00:00 -0000
+
+ros-rolling-cras-bag-tools (2.4.8-2bookworm) bookworm; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Mon, 06 Jan 2025 23:00:00 -0000
+
+ros-rolling-cras-bag-tools (2.4.7-2bookworm) bookworm; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Wed, 11 Dec 2024 23:00:00 -0000
+
+ros-rolling-cras-bag-tools (2.4.6-2bookworm) bookworm; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Wed, 11 Dec 2024 23:00:00 -0000
+
+ros-rolling-cras-bag-tools (2.4.5-2bookworm) bookworm; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Fri, 01 Nov 2024 23:00:00 -0000
+
+ros-rolling-cras-bag-tools (2.4.4-2bookworm) bookworm; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Fri, 13 Sep 2024 22:00:00 -0000
+
+ros-rolling-cras-bag-tools (2.4.3-2bookworm) bookworm; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Fri, 13 Sep 2024 22:00:00 -0000
+
+ros-rolling-cras-bag-tools (2.4.2-2bookworm) bookworm; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Wed, 04 Sep 2024 22:00:00 -0000
+
+ros-rolling-cras-bag-tools (2.4.1-2bookworm) bookworm; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Tue, 03 Sep 2024 22:00:00 -0000
+
+ros-rolling-cras-bag-tools (2.4.0-2bookworm) bookworm; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Tue, 03 Sep 2024 22:00:00 -0000
+
+ros-rolling-cras-bag-tools (2.3.9-2bookworm) bookworm; urgency=high
+
+  * Removed catkin_lint buildfarm hacks.
+  * Contributors: Martin Pecka
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Mon, 26 Feb 2024 23:00:00 -0000
+
+ros-rolling-cras-bag-tools (2.3.8-2bookworm) bookworm; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Thu, 11 Jan 2024 23:00:00 -0000
+
+ros-rolling-cras-bag-tools (2.3.7-2bookworm) bookworm; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Mon, 08 Jan 2024 23:00:00 -0000
+
+ros-rolling-cras-bag-tools (2.3.6-2bookworm) bookworm; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Mon, 08 Jan 2024 23:00:00 -0000
+
+ros-rolling-cras-bag-tools (2.3.5-2bookworm) bookworm; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Mon, 20 Nov 2023 23:00:00 -0000
+
+ros-rolling-cras-bag-tools (2.3.4-2bookworm) bookworm; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Tue, 24 Oct 2023 22:00:00 -0000
+
+ros-rolling-cras-bag-tools (2.3.3-2bookworm) bookworm; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Thu, 05 Oct 2023 22:00:00 -0000
+
+ros-rolling-cras-bag-tools (2.3.2-2bookworm) bookworm; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Thu, 05 Oct 2023 22:00:00 -0000
+
+ros-rolling-cras-bag-tools (2.3.1-2bookworm) bookworm; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Wed, 12 Jul 2023 22:00:00 -0000
+
+ros-rolling-cras-bag-tools (2.3.0-2bookworm) bookworm; urgency=high
+
+  * Increased minimum CMake version to 3.10.2.
+  * Contributors: Martin Pecka
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Tue, 11 Jul 2023 22:00:00 -0000
+
+ros-rolling-cras-bag-tools (2.2.3-2bookworm) bookworm; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Thu, 15 Jun 2023 22:00:00 -0000
+
+ros-rolling-cras-bag-tools (2.2.2-2bookworm) bookworm; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Sun, 14 May 2023 22:00:00 -0000
+
+ros-rolling-cras-bag-tools (2.2.1-2bookworm) bookworm; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Sun, 14 May 2023 22:00:00 -0000
+
+ros-rolling-cras-bag-tools (2.2.0-2bookworm) bookworm; urgency=high
+
+  * Updated build files
+  * Contributors: Martin Pecka
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Sat, 08 Apr 2023 22:00:00 -0000
+
+ros-rolling-cras-bag-tools (2.1.2-2bookworm) bookworm; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Thu, 09 Feb 2023 23:00:00 -0000
+
+ros-rolling-cras-bag-tools (2.1.1-2bookworm) bookworm; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Tue, 07 Feb 2023 23:00:00 -0000
+
+ros-rolling-cras-bag-tools (2.1.0-2bookworm) bookworm; urgency=high
+
+  * Move merge_bag higher in readme.
+  * Added size_per_topic.
+  * Improved structure, added merge_bag.
+  * Contributors: Martin Pecka
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Tue, 07 Feb 2023 23:00:00 -0000
+
+ros-rolling-cras-bag-tools (2.0.10-2bookworm) bookworm; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Wed, 23 Nov 2022 23:00:00 -0000
+
+ros-rolling-cras-bag-tools (2.0.9-2bookworm) bookworm; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Wed, 23 Nov 2022 23:00:00 -0000
+
+ros-rolling-cras-bag-tools (2.0.8-2bookworm) bookworm; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Wed, 23 Nov 2022 23:00:00 -0000
+
+ros-rolling-cras-bag-tools (2.0.7-2bookworm) bookworm; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Wed, 23 Nov 2022 23:00:00 -0000
+
+ros-rolling-cras-bag-tools (2.0.6-2bookworm) bookworm; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Wed, 23 Nov 2022 23:00:00 -0000
+
+ros-rolling-cras-bag-tools (2.0.5-2bookworm) bookworm; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Sat, 22 Oct 2022 22:00:00 -0000
+
+ros-rolling-cras-bag-tools (2.0.4-2bookworm) bookworm; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Thu, 13 Oct 2022 22:00:00 -0000
+
+ros-rolling-cras-bag-tools (2.0.3-2bookworm) bookworm; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Thu, 06 Oct 2022 22:00:00 -0000
+
+ros-rolling-cras-bag-tools (2.0.2-2bookworm) bookworm; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Sun, 28 Aug 2022 22:00:00 -0000
+
+
