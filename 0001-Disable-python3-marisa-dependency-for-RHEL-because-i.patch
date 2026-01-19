@@ -1,4 +1,4 @@
-From 99226e2d08518e8681eed1d0c03e182c322f4451 Mon Sep 17 00:00:00 2001
+From 6ed7de0b6f4df9a3d74d6e7d19bf897997562868 Mon Sep 17 00:00:00 2001
 From: Martin Pecka <peckama2@fel.cvut.cz>
 Date: Tue, 13 Jan 2026 22:02:55 +0100
 Subject: [PATCH] Disable python3-marisa dependency for RHEL because it is not
