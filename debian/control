@@ -1,0 +1,12 @@
+Source: ros-jazzy-cras-lint
+Section: misc
+Priority: optional
+Maintainer: Martin Pecka <peckama2@fel.cvut.cz>
+Build-Depends: debhelper (>= 9.0.0), ros-jazzy-ament-cmake-core, ros-jazzy-ament-cmake-test, ros-jazzy-ament-lint-common <!nocheck>, ros-jazzy-ros-workspace
+Homepage: https://wiki.ros.org/cras_bag_tools
+Standards-Version: 3.9.2
+
+Package: ros-jazzy-cras-lint
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-jazzy-ament-cmake-core, ros-jazzy-ament-cmake-test, ros-jazzy-ament-lint-common, ros-jazzy-ros-workspace
+Description: Various utilities to work with bag files
