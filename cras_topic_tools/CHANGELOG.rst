@@ -2,6 +2,9 @@
 Changelog for package cras_topic_tools
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+3.0.1 (2026-01-19)
+------------------
+
 3.0.0 (2026-01-13)
 ------------------
 * Temporarily disabled cras_msgs for release.
