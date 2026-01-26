@@ -1,9 +1,0 @@
-# SPDX-License-Identifier: BSD-3-Clause
-# SPDX-FileCopyrightText: Czech Technical University in Prague
-
-out_format: '{name}.preview{ext}'
-compression: lz4
-filters:
-  - DepthImagePreview:
-      normalize: True
-      # num_normalization_samples: 0.03
