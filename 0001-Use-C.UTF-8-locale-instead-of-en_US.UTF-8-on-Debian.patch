@@ -1,4 +1,4 @@
-From 0043298b1e9b1056c2e8979ca8e5572bb5174132 Mon Sep 17 00:00:00 2001
+From 9d70bf866c2aad3494f0d7381c5e42355cde41a5 Mon Sep 17 00:00:00 2001
 From: Martin Pecka <peckama2@fel.cvut.cz>
 Date: Tue, 13 Jan 2026 22:01:01 +0100
 Subject: [PATCH] Use C.UTF-8 locale instead of en_US.UTF-8 on Debian.
