@@ -13,7 +13,6 @@
 #include <charconv>
 #include <clocale>
 #include <cmath>
-#include <format>
 #include <limits>
 #include <optional>
 #include <regex>
@@ -26,6 +25,7 @@
 // #include <ros/console.h>
 // #include <rosconsole/macros_generated.h>
 
+#include <cras_cpp_common/format.hpp>
 #include <cras_cpp_common/string_utils.hpp>
 #include <cras_cpp_common/string_utils/from_chars.hpp>
 
@@ -490,7 +490,7 @@ std::string iconvConvert(const std::string& toEncoding, const std::string& fromE
     errno = 0;
     convDesc = iconv_open(toEnc.c_str(), fromEncoding.c_str());
     if (convDesc == reinterpret_cast<iconv_t>(-1))
-      throw std::invalid_argument(std::format(
+      throw std::invalid_argument(cras::format(
         "Could not create conversion descriptor from encoding '{}' to '{}': Error {}",
         fromEncoding, toEnc, strerror(errno)));
     iconvDescriptors[{fromEncoding, toEnc}] = convDesc;
@@ -514,7 +514,7 @@ std::string iconvConvert(const std::string& toEncoding, const std::string& fromE
   while (inbufUnreadSize > 0)
   {
     // iconv transliteration doesn't work with the default C locale, we need a UTF-8 one
-    TempLocale tempLocale(LC_CTYPE, localeName.value_or("C.UTF-8").c_str());
+    TempLocale tempLocale(LC_CTYPE, localeName.value_or("en_US.UTF-8").c_str());
     errno = 0;
     if (iconv(convDesc, &inbuf, &inbufUnreadSize, &outbuf, &outbufUnusedSize) != static_cast<size_t>(-1))
     {
@@ -544,7 +544,7 @@ std::string iconvConvert(const std::string& toEncoding, const std::string& fromE
         iconv(convDesc, nullptr, nullptr, nullptr, nullptr);
 
         if (!ignore)
-          throw std::invalid_argument(std::format("Could not convert {} from encoding {} to {}. Error {}",
+          throw std::invalid_argument(cras::format("Could not convert {} from encoding {} to {}. Error {}",
             inText, fromEncoding, toEncoding, strerror(resErrno)));
 
         // Ignore invalid input byte sequences or sequences we can't transliterate
@@ -612,7 +612,7 @@ std::string toValidRosName(
   if (name.empty())
   {
     if (!fallbackName.has_value())
-      throw std::invalid_argument(std::format("Name '{}' cannot be converted to valid ROS name", name));
+      throw std::invalid_argument(cras::format("Name '{}' cannot be converted to valid ROS name", name));
     return *fallbackName;
   }
 
@@ -620,7 +620,7 @@ std::string toValidRosName(
   if ((baseName && !isLegalBaseName(name)) || (!baseName && !isLegalName(name)))
   {
     if (!fallbackName.has_value())
-      throw std::invalid_argument(std::format("Name '{}' cannot be converted to valid ROS name", name));
+      throw std::invalid_argument(cras::format("Name '{}' cannot be converted to valid ROS name", name));
     return *fallbackName;
   }
 

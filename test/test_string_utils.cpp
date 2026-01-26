@@ -1433,15 +1433,15 @@ TEST(StringUtils, TempLocale)  // NOLINT
 
   {
     EXPECT_STREQ(currLocale, setlocale(LC_ALL, nullptr));
-    TempLocale l(LC_ALL, "C.UTF-8");
-    EXPECT_STREQ("C.UTF-8", setlocale(LC_ALL, nullptr));
+    TempLocale l(LC_ALL, "en_US.UTF-8");
+    EXPECT_STREQ("en_US.UTF-8", setlocale(LC_ALL, nullptr));
   }
   EXPECT_STREQ(currLocale, setlocale(LC_ALL, nullptr));
 
   {
     EXPECT_STREQ(currLocale, setlocale(LC_ALL, nullptr));
-    TempLocale l(LC_ALL, "C.UTF-8");
-    EXPECT_STREQ("C.UTF-8", setlocale(LC_ALL, nullptr));
+    TempLocale l(LC_ALL, "en_US.UTF-8");
+    EXPECT_STREQ("en_US.UTF-8", setlocale(LC_ALL, nullptr));
   }
   EXPECT_STREQ(currLocale, setlocale(LC_ALL, nullptr));
 }
