@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package format="3">
   <name>cras_topic_tools</name>
-  <version>3.0.1</version>
+  <version>3.0.2</version>
   <description>Nodes and components for safe and efficient manipulation with topics</description>
 
   <author email="peckama2@fel.cvut.cz">Martin Pecka</author>
@@ -9,7 +9,7 @@
 
   <license>BSD</license>
 
-  <url type="website">https://wiki.ros.org/cras_topic_tools</url>
+  <url type="website">https://index.ros.org/p/cras_topic_tools</url>
   <url type="bugtracker">https://github.com/ctu-vras/ros-utils/issues</url>
   <url type="repository">https://github.com/ctu-vras/ros-utils</url>
 
