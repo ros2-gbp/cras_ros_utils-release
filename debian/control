@@ -1,0 +1,12 @@
+Source: ros-lyrical-cras-cpp-common
+Section: misc
+Priority: optional
+Maintainer: Martin Pecka <peckama2@fel.cvut.cz>
+Build-Depends: debhelper (>= 9.0.0), libboost-dev, libeigen3-dev <!nocheck>, libexpected-dev, libfmt-dev, ros-lyrical-ament-cmake, ros-lyrical-ament-cmake-gen-version-h, ros-lyrical-ament-cmake-gtest <!nocheck>, ros-lyrical-ament-cmake-ros <!nocheck>, ros-lyrical-backward-ros, ros-lyrical-builtin-interfaces, ros-lyrical-cras-lint <!nocheck>, ros-lyrical-geometry-msgs <!nocheck>, ros-lyrical-rcl, ros-lyrical-rclcpp, ros-lyrical-rclcpp-components, ros-lyrical-rcutils, ros-lyrical-rmw, ros-lyrical-std-msgs <!nocheck>, ros-lyrical-tf2, ros-lyrical-tf2 <!nocheck>, ros-lyrical-tf2-geometry-msgs, ros-lyrical-tf2-ros, ros-lyrical-ros-workspace
+Homepage: https://index.ros.org/p/cras_cpp_common
+Standards-Version: 3.9.2
+
+Package: ros-lyrical-cras-cpp-common
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libboost-dev, libexpected-dev, libfmt-dev, ros-lyrical-backward-ros, ros-lyrical-builtin-interfaces, ros-lyrical-rcl, ros-lyrical-rclcpp, ros-lyrical-rclcpp-components, ros-lyrical-rcutils, ros-lyrical-rmw, ros-lyrical-tf2, ros-lyrical-tf2-geometry-msgs, ros-lyrical-tf2-ros, ros-lyrical-ros-workspace
+Description: A Czech-army knife for ROS code written in C++.
