@@ -14,10 +14,6 @@ Source0:        %{name}-%{version}.tar.gz
 BuildRequires:  bloom-rpm-macros
 BuildRequires:  cmake
 
-%if 0%{?rhel}
-%define _bloom_skip_keys %{?_bloom_skip_keys} python3-marisa
-%endif
-
 %{?bloom_package}
 
 %description
