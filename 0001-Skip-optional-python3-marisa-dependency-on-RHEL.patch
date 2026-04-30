@@ -1,6 +1,6 @@
-From a9ce81e9f8c7d924fc1206cb45c441bf0d7fe053 Mon Sep 17 00:00:00 2001
+From c489374841c4abc8f390fba867af94a71fd361e6 Mon Sep 17 00:00:00 2001
 From: Scott K Logan <logans@cottsay.net>
-Date: Thu, 30 Apr 2026 10:18:19 -0500
+Date: Thu, 30 Apr 2026 10:27:22 -0500
 Subject: [PATCH] Skip optional python3-marisa dependency on RHEL
 
 ---
@@ -8,7 +8,7 @@ Subject: [PATCH] Skip optional python3-marisa dependency on RHEL
  1 file changed, 4 insertions(+)
 
 diff --git a/rpm/ros-lyrical-cras-bag-tools.spec b/rpm/ros-lyrical-cras-bag-tools.spec
-index 59d6471f2a52..3cc25b543e2c 100644
+index 59d6471f2a52..2858572a868d 100644
 --- a/rpm/ros-lyrical-cras-bag-tools.spec
 +++ b/rpm/ros-lyrical-cras-bag-tools.spec
 @@ -14,6 +14,10 @@ Source0:        %{name}-%{version}.tar.gz
@@ -16,7 +16,7 @@ index 59d6471f2a52..3cc25b543e2c 100644
  BuildRequires:  cmake
  
 +%if 0%{?rhel}
-+%define _bloom_skip_keys %{?_bloom_skip_keys} python3-marisa
++%global _bloom_skip_keys %{?_bloom_skip_keys} python3-marisa
 +%endif
 +
  %{?bloom_package}
