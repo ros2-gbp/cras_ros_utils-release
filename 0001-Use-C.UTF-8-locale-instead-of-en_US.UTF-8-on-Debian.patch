@@ -1,4 +1,4 @@
-From 72fb76c73d57ae98e53dc80218b5e152e0af5c7a Mon Sep 17 00:00:00 2001
+From 7b89a727bf8c09c03d8848ac8e204be442ef9c1d Mon Sep 17 00:00:00 2001
 From: Martin Pecka <peckama2@fel.cvut.cz>
 Date: Tue, 13 Jan 2026 22:01:01 +0100
 Subject: [PATCH] Use C.UTF-8 locale instead of en_US.UTF-8 on Debian.
@@ -10,10 +10,10 @@ Subject: [PATCH] Use C.UTF-8 locale instead of en_US.UTF-8 on Debian.
  3 files changed, 6 insertions(+), 6 deletions(-)
 
 diff --git a/package.xml b/package.xml
-index 593b246..b496cb3 100644
+index 04851bf..5912410 100644
 --- a/package.xml
 +++ b/package.xml
-@@ -38,7 +38,7 @@ SPDX-FileCopyrightText: Czech Technical University in Prague
+@@ -44,7 +44,7 @@ SPDX-FileCopyrightText: Czech Technical University in Prague
    <build_depend>tf2_geometry_msgs</build_depend>
  
    <exec_depend>backward_ros</exec_depend>
@@ -23,23 +23,23 @@ index 593b246..b496cb3 100644
    <exec_depend>tf2_geometry_msgs</exec_depend>
  
 diff --git a/src/string_utils.cpp b/src/string_utils.cpp
-index 74250c1..a178964 100644
+index 5faf160..13948e1 100644
 --- a/src/string_utils.cpp
 +++ b/src/string_utils.cpp
-@@ -514,7 +514,7 @@ std::string iconvConvert(const std::string& toEncoding, const std::string& fromE
-   while (inbufUnreadSize > 0)
-   {
+@@ -447,7 +447,7 @@ std::string iconvConvert(
+   // Read the input until there is something to read
+   while (inbuf_unread_size > 0) {
      // iconv transliteration doesn't work with the default C locale, we need a UTF-8 one
--    TempLocale tempLocale(LC_CTYPE, localeName.value_or("en_US.UTF-8").c_str());
-+    TempLocale tempLocale(LC_CTYPE, localeName.value_or("C.UTF-8").c_str());
+-    TempLocale temp_locale(LC_CTYPE, locale_name.value_or("en_US.UTF-8").c_str());
++    TempLocale temp_locale(LC_CTYPE, locale_name.value_or("C.UTF-8").c_str());
      errno = 0;
-     if (iconv(convDesc, &inbuf, &inbufUnreadSize, &outbuf, &outbufUnusedSize) != static_cast<size_t>(-1))
-     {
+     if (iconv(conv_desc, &inbuf, &inbuf_unread_size, &outbuf, &outbuf_unused_size) != static_cast<size_t>(-1)) {
+       // Clean up the conversion descriptor and flush possible "shift sequences"
 diff --git a/test/test_string_utils.cpp b/test/test_string_utils.cpp
-index 1571821..39d3844 100644
+index 9bbffe8..6db66ea 100644
 --- a/test/test_string_utils.cpp
 +++ b/test/test_string_utils.cpp
-@@ -1433,15 +1433,15 @@ TEST(StringUtils, TempLocale)  // NOLINT
+@@ -1446,15 +1446,15 @@ TEST(StringUtils, TempLocale)  // NOLINT
  
    {
      EXPECT_STREQ(currLocale, setlocale(LC_ALL, nullptr));
