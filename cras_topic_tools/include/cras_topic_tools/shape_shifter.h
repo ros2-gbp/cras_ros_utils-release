@@ -1,0 +1,205 @@
+#pragma once
+
+// SPDX-License-Identifier: BSD-3-Clause
+// SPDX-FileCopyrightText: Czech Technical University in Prague
+
+/**
+ * \file
+ * \brief Tools for more convenient working with ShapeShifter objects.
+ * \author Martin Pecka
+ */
+
+#include <string>
+#include <type_traits>
+
+#include <ros/message_traits.h>
+#include <std_msgs/Header.h>
+#include <topic_tools/shape_shifter.h>
+
+#include <cras_cpp_common/optional.hpp>
+
+namespace cras
+{
+
+/**
+ * \brief Get the internal buffer with serialized message data.
+ * \param[in] msg The shape shifter object.
+ * \return The internal buffer.
+ * \note The buffer can stop being valid after a ShapeShifter::read() operation or when the shifter is destroyed.
+ */
+uint8_t* getBuffer(::topic_tools::ShapeShifter& msg);
+
+/**
+ * \brief Get the internal buffer with serialized message data.
+ * \param[in] msg The shape shifter object.
+ * \return The internal buffer.
+ * \note The buffer can stop being valid after a ShapeShifter::read() operation or when the shifter is destroyed.
+ */
+const uint8_t* getBuffer(const ::topic_tools::ShapeShifter& msg);
+
+/**
+ * \brief Get the length of the internal buffer with serialized message data.
+ * \param[in] msg The shape shifter object.
+ * \return The internal buffer length.
+ * \note The buffer can stop being valid after a ShapeShifter::read() operation or when the shifter is destroyed.
+ */
+size_t getBufferLength(const ::topic_tools::ShapeShifter& msg);
+
+/**
+ * \brief Tell whether the given message has `header` field.
+ * \param[in] msg The shape shifter object.
+ * \return Whether there is a `header` field in the message.
+ * \note This function might be slow. Do not call it on receipt of every message on high-frequency topics.
+ */
+bool hasHeader(const ::topic_tools::ShapeShifter& msg);
+
+/**
+ * \brief Get the `header` field of the given message, if it has any.
+ * \param[in] msg The shape shifter object.
+ * \return The `header` of the represented message. If there is no header, `nullopt` is returned.
+ * \note This function can have some "false positives", as it doesn't actually know whether the message has a header or
+ *       not. There is a high chance that if the message does not have a header, the reading of Header data will fail,
+ *       but there are corner cases when the message data will be interpretable as a Header. It is advised to check
+ *       whether the message type has a header via introspection, `hasHeader()` or some other kind of information.
+ */
+::cras::optional<::std_msgs::Header> getHeader(const ::topic_tools::ShapeShifter& msg);
+
+/**
+ * \brief Change the `header` field of the given message, if it has any.
+ * \param[in,out] msg The message to change.
+ * \param[in] header The header to set.
+ * \return Whether setting the new header has succeeded. It will fail if either the message does not seem to have a
+ *         `header` field, or if some serialization/deserialization error occurs. If the function returns false,
+ *         the message has to be considered invalid and has to be discarded. The caller should use `getHeader()` or
+ *         other information sources to make sure the message type actually does have a header.
+ * \note This function does not (de)serialize the whole message, it only serializes its header part.
+ * \note If the new header is shorter or same length as the old one, there is no memory allocation happening.
+ */
+bool setHeader(::topic_tools::ShapeShifter& msg, ::std_msgs::Header& header);
+
+/**
+ * \brief Resize the internal buffer of the message.
+ * \param[in,out] msg The message to change.
+ * \param[in] newLength New length of the internal buffer.
+ * \note If the new size is the same as the old one, nothing happens. If the new one is longer, the buffer is
+ *       reallocated and the contents of the old buffer are copied to it. If the new one is shorter, the contained data
+ *       are cropped to the new length.
+ * \note Use this function with care. After calling it, the message object becomes invalid until you fix it.
+ */
+void resizeBuffer(::topic_tools::ShapeShifter& msg, size_t newLength);
+
+/**
+ * \brief Copy `in` ShapeShifter to `out`.
+ * \param[in] in Input message.
+ * \param[in] out Output message.
+ * \note This is a workaround for https://github.com/ros/ros_comm/pull/1722 which has not been merged into Melodic.
+ */
+void copyShapeShifter(const ::topic_tools::ShapeShifter& in, ::topic_tools::ShapeShifter& out);
+
+/**
+ * \brief Copy the message instance into the given ShapeShifter.
+ * \tparam T Type of the message.
+ * \param[in] msg The message to copy.
+ * \param[out] shifter The ShapeShifter to copy to.
+ * \note All old references to the shifter's internal buffer have to be treated as invalid after calling this function.
+ */
+template<typename T, typename EnableT = ::std::enable_if_t<::ros::message_traits::IsMessage<::std::decay_t<T>>::value>>
+void msgToShapeShifter(const T& msg, ::topic_tools::ShapeShifter& shifter);
+
+#if ROS_VERSION_MINIMUM(1, 15, 0)
+using ::topic_tools::ShapeShifter;
+#else
+
+/**
+ * \brief `ShapeShifter` class with fixed behavior on copy/move on Melodic. Use this class everywhere possible to
+ *        prevent memory corruption. It seamlessly converts to `topic_tools::ShapeShifter`;
+ */
+class ShapeShifter : public ::topic_tools::ShapeShifter
+{
+public:
+  ShapeShifter();
+  ~ShapeShifter() override;
+  explicit ShapeShifter(const ::topic_tools::ShapeShifter& other);
+  explicit ShapeShifter(::topic_tools::ShapeShifter && other) noexcept;
+  ShapeShifter& operator=(const ::topic_tools::ShapeShifter& other);
+  ShapeShifter& operator=(::topic_tools::ShapeShifter && other) noexcept;
+  ShapeShifter(const ShapeShifter& other);
+  ShapeShifter(ShapeShifter&& other) noexcept;
+  ShapeShifter& operator=(const ShapeShifter& other);
+  ShapeShifter& operator=(ShapeShifter&& other) noexcept;
+};
+#endif
+
+}
+
+#if !ROS_VERSION_MINIMUM(1, 15, 0)
+namespace ros {
+namespace message_traits {
+
+template <> struct IsMessage<cras::ShapeShifter> : TrueType { };
+template <> struct IsMessage<const cras::ShapeShifter> : TrueType { };
+
+template<>
+struct MD5Sum<cras::ShapeShifter>
+{
+  static const char* value(const cras::ShapeShifter& m) { return m.getMD5Sum().c_str(); }
+  static const char* value() { return "*"; }
+};
+
+template<>
+struct DataType<cras::ShapeShifter>
+{
+  static const char* value(const cras::ShapeShifter& m) { return m.getDataType().c_str(); }
+  static const char* value() { return "*"; }
+};
+
+template<>
+struct Definition<cras::ShapeShifter>
+{
+  static const char* value(const cras::ShapeShifter& m) { return m.getMessageDefinition().c_str(); }
+};
+
+}
+
+namespace serialization
+{
+
+template<>
+struct Serializer<cras::ShapeShifter>
+{
+  template<typename Stream>
+  inline static void write(Stream& stream, const cras::ShapeShifter& m) {
+    m.write(stream);
+  }
+
+  template<typename Stream>
+  inline static void read(Stream& stream, cras::ShapeShifter& m)
+  {
+    m.read(stream);
+  }
+
+  inline static uint32_t serializedLength(const cras::ShapeShifter& m) {
+    return m.size();
+  }
+};
+
+
+template<>
+struct PreDeserialize<cras::ShapeShifter>
+{
+  static void notify(const PreDeserializeParams<cras::ShapeShifter>& params)
+  {
+    std::string md5      = (*params.connection_header)["md5sum"];
+    std::string datatype = (*params.connection_header)["type"];
+    std::string msg_def  = (*params.connection_header)["message_definition"];
+    std::string latching  = (*params.connection_header)["latching"];
+
+    params.message->morph(md5, datatype, msg_def, latching);
+  }
+};
+
+}
+}
+#endif
+
+#include "impl/shape_shifter.hpp"
