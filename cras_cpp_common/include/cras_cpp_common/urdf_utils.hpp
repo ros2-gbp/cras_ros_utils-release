@@ -1,19 +1,19 @@
 #pragma once
 
+// SPDX-License-Identifier: BSD-3-Clause
+// SPDX-FileCopyrightText: Czech Technical University in Prague
+
 /**
  * \file
  * \brief Utilities for conversions between URDF and other types.
  * \author Martin Pecka
- * SPDX-License-Identifier: BSD-3-Clause
- * SPDX-FileCopyrightText: Czech Technical University in Prague
  */
 
 #include <Eigen/Geometry>
 
 #include <urdf_model/pose.h>
 
-namespace cras
-{
+namespace cras {
 
 /**
  * \brief URDF Vector3 to Eigen translation.
@@ -64,4 +64,4 @@ namespace cras
  */
 ::urdf::Pose toURDF(const ::Eigen::Isometry3d& pose);
 
-}
+}  // namespace cras
