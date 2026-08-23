@@ -12,13 +12,13 @@ This package is always tested for architectures amd64 and arm64.
 
 This package is supported on ROS 1 **Melodic** and **Noetic** (on branch `master`) even after their End of Life.
 
-This package is supported on ROS 2 **Jazzy** and **Klited** (on branch `ros2`). Humble and Foxy are not and will not be supported.
+This package is supported on ROS 2 **Jazzy**, **Klited**, **Lyrical** and **Rolling** (on branch `ros2`). Humble and Foxy are not and will not be supported.
 
 Development version: [![CI](https://github.com/ctu-vras/ros-utils/actions/workflows/ci-ros2.yaml/badge.svg?branch=ros2)](https://github.com/ctu-vras/ros-utils/actions/workflows/ci-ros2.yaml)
 
 ## Provided Nodes and Composable Nodes
 
-Here is an overview of the provided nodes and nodelets. See their [API docs](https://docs.ros.org/en/jazzy/p/cras_topic_tools/) for details.
+Here is an overview of the provided nodes and components. See their [API docs](https://docs.ros.org/en/jazzy/p/cras_topic_tools/) for details.
 Most of these nodes are message-type-agnostic, but they may differ between messages that have or do not have a `std_msgs/Header header` field.
 
 _The majority of this package is not yet available in ROS 2._
@@ -26,7 +26,9 @@ _The majority of this package is not yet available in ROS 2._
 <!--
 - `change_header`: Allows modifying headers of messages (frame ID, timestamp). [Usage](https://docs.ros.org/en/latest/api/cras_topic_tools/html/classcras_1_1ChangeHeaderNodelet.html#details).
 -->
-- `count_messages`: Count the number of received messages, make it available as a ROS parameter and print statistics. <!-- [Usage](https://docs.ros.org/en/latest/api/cras_topic_tools/html/classcras_1_1CountMessagesNodelet.html#details). -->
+
+- `count_messages`: Count the number of received messages, make it available as a ROS parameter and print statistics. [Usage](https://docs.ros.org/en/kilted/p/cras_topic_tools/generated/classcras_1_1CountMessagesComponent.html#_CPPv4N4cras22CountMessagesComponentE).
+
 <!--
 - `filter`: (only node, no nodelet) Filter messages on a topic based on a Python expression. [Usage](https://github.com/ctu-vras/ros-utils/blob/master/cras_topic_tools/nodes/filter).
 - `heartbeat`: Publish `cras_msgs/Heartbeat` heartbeat of a topic. [Usage](https://docs.ros.org/en/latest/api/cras_topic_tools/html/classcras_1_1HeartbeatNodelet.html#details).
