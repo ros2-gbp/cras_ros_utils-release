@@ -24,17 +24,16 @@
 #include <Eigen/Core>
 
 #include <cras_cpp_common/string_utils.hpp>
+#include <rclcpp/exceptions/exceptions.hpp>
+#include <rclcpp/time.hpp>
 #include <std_msgs/msg/bool.hpp>
 #include <std_msgs/msg/header.hpp>
 #include <std_msgs/msg/multi_array_layout.hpp>
-#include <rclcpp/exceptions/exceptions.hpp>
-#include <rclcpp/time.hpp>
 #include <tf2/LinearMath/Vector3.hpp>
 
 using namespace cras;
 
-rclcpp::Clock::SharedPtr createTestClock()
-{
+rclcpp::Clock::SharedPtr createTestClock() {
   const auto clock = rclcpp::Clock::make_shared(RCL_ROS_TIME);
   const auto ret = rcl_enable_ros_time_override(clock->get_clock_handle());
   if (ret != RMW_RET_OK)
@@ -42,8 +41,7 @@ rclcpp::Clock::SharedPtr createTestClock()
   return clock;
 }
 
-void setTime(const rclcpp::Clock::SharedPtr& clock, const rclcpp::Time& time)
-{
+void setTime(const rclcpp::Clock::SharedPtr& clock, const rclcpp::Time& time) {
   const auto ret = rcl_set_ros_time_override(
     clock->get_clock_handle(), cras::convertTime<rcl_time_point_value_t>(time));
   if (ret != RMW_RET_OK)
@@ -206,12 +204,27 @@ TEST(StringUtils, ToStringBasic)  // NOLINT
 
 TEST(StringUtils, ToStringRos)  // NOLINT
 {
-  EXPECT_EQ("1.500000000", to_string(rclcpp::Time(1, 500000000)));
-  EXPECT_EQ("1.500000000", to_string(rclcpp::Duration(1, 500000000)));
+  constexpr auto ts = "1.500000000";
+  const rclcpp::Time t(1, 500000000);
+  const rclcpp::Duration d(1, 500000000);
 
-  EXPECT_EQ("1970-01-01T00:00:01.500000Z", to_pretty_string(rclcpp::Time(1, 500000000)));
+  EXPECT_EQ(ts, to_string(t));
+  EXPECT_EQ(ts, to_string(d));
+
+  EXPECT_EQ("1970-01-01T00:00:01.500000Z", to_pretty_string(t));
 
   EXPECT_EQ("2024-11-13T13:44:04Z", to_pretty_string(rclcpp::Time(1731505444, 0)));
+
+  EXPECT_EQ(ts, to_string(convertTime<builtin_interfaces::msg::Time>(t)));
+  EXPECT_EQ(ts, to_string(convertTime<rcl_time_point_t>(t)));
+  EXPECT_EQ(ts, to_string(convertTime<rmw_time_t>(t)));
+  EXPECT_EQ("1.000000000", to_string(convertTime<tm>(t)));
+  EXPECT_EQ(ts, to_string(convertTime<std::chrono::system_clock::time_point>(t)));
+
+  EXPECT_EQ(ts, to_string(convertDuration<builtin_interfaces::msg::Duration>(d)));
+  EXPECT_EQ(ts, to_string(convertDuration<rcl_duration_t>(d)));
+  EXPECT_EQ(ts, to_string(convertDuration<rmw_time_t>(d)));
+  EXPECT_EQ(ts, to_string(convertDuration<std::chrono::nanoseconds>(d)));
 
   std_msgs::msg::Bool b;
   EXPECT_EQ("data: false", to_string(b));
@@ -536,7 +549,7 @@ TEST(StringUtils, ToUpper)  // NOLINT
   EXPECT_EQ("TEST", cras::toUpper("TeST"));
   EXPECT_EQ("", cras::toUpper(""));
   EXPECT_EQ("1234567890", cras::toUpper("1234567890"));
-//  EXPECT_EQ("ĚŠČŘŽÝÁÍÉĎŤŇÚŮ", cras::toUpper("ěščřžýáíéďťňúů"));  // not yet working
+// EXPECT_EQ("ĚŠČŘŽÝÁÍÉĎŤŇÚŮ", cras::toUpper("ěščřžýáíéďťňúů"));  // not yet working
 }
 
 TEST(StringUtils, ToLower)  // NOLINT
@@ -547,7 +560,7 @@ TEST(StringUtils, ToLower)  // NOLINT
   EXPECT_EQ("test", cras::toLower("TeST"));
   EXPECT_EQ("", cras::toUpper(""));
   EXPECT_EQ("1234567890", cras::toUpper("1234567890"));
-//  EXPECT_EQ("ěščřžýáíéďťňúů", cras::toLower("ĚŠČŘŽÝÁÍÉĎŤŇÚŮ"));  // not yet working
+// EXPECT_EQ("ěščřžýáíéďťňúů", cras::toLower("ĚŠČŘŽÝÁÍÉĎŤŇÚŮ"));  // not yet working
 }
 
 TEST(StringUtils, QuoteIfStringType)  // NOLINT
@@ -1509,8 +1522,7 @@ TEST(StringUtils, ToValidRosName)  // NOLINT
   EXPECT_EQ(toValidRosName("30 \U0001d5c4\U0001d5c6/\U0001d5c1", false), "km/h");
 }
 
-int main(int argc, char **argv)
-{
+int main(int argc, char**argv) {
   testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
 }
