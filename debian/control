@@ -1,0 +1,12 @@
+Source: ros-jazzy-cras-cpp-common
+Section: misc
+Priority: optional
+Maintainer: "Martin Pecka" <peckama2@fel.cvut.cz>
+Build-Depends: debhelper (>= 9.0.0), libboost-dev, libeigen3-dev, libexpected-dev, libfmt-dev, ros-jazzy-ament-cmake, ros-jazzy-ament-cmake-gen-version-h, ros-jazzy-ament-cmake-gtest <!nocheck>, ros-jazzy-ament-cmake-ros <!nocheck>, ros-jazzy-backward-ros, ros-jazzy-builtin-interfaces, ros-jazzy-cras-lint <!nocheck>, ros-jazzy-filters, ros-jazzy-geometry-msgs, ros-jazzy-rcl, ros-jazzy-rclcpp, ros-jazzy-rclcpp-components, ros-jazzy-rcutils, ros-jazzy-rmw, ros-jazzy-sensor-msgs, ros-jazzy-std-msgs <!nocheck>, ros-jazzy-tf2, ros-jazzy-tf2 <!nocheck>, ros-jazzy-tf2-eigen, ros-jazzy-tf2-geometry-msgs, ros-jazzy-urdf, ros-jazzy-ros-workspace
+Homepage: https://index.ros.org/p/cras_cpp_common
+Standards-Version: 3.9.2
+
+Package: ros-jazzy-cras-cpp-common
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libboost-dev, libeigen3-dev, libexpected-dev, libfmt-dev, ros-jazzy-backward-ros, ros-jazzy-builtin-interfaces, ros-jazzy-filters, ros-jazzy-geometry-msgs, ros-jazzy-rcl, ros-jazzy-rclcpp, ros-jazzy-rclcpp-components, ros-jazzy-rcutils, ros-jazzy-rmw, ros-jazzy-sensor-msgs, ros-jazzy-tf2, ros-jazzy-tf2-eigen, ros-jazzy-tf2-geometry-msgs, ros-jazzy-urdf, ros-jazzy-ros-workspace
+Description: A Czech-army knife for ROS code written in C++.
