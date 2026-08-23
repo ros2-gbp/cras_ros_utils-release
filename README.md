@@ -1,3 +1,37 @@
+## cras_ros_utils (kilted) - 4.0.1-1
+
+The packages in the `cras_ros_utils` repository were released into the `kilted` distro by running `/home/peci1/.local/bin/bloom-release -r kilted cras_ros_utils` on `Sun, 23 Aug 2026 01:30:46 -0000`
+
+These packages were released:
+- `cras_bag_tools`
+- `cras_cpp_common`
+- `cras_lint`
+- `cras_topic_tools`
+
+These packages were explicitly ignored:
+- `camera_throttle`
+- `cras_docs_common`
+- `cras_py_common`
+- `image_transport_codecs`
+- `tf_static_publisher`
+
+Version of package(s) in repository `cras_ros_utils`:
+
+- upstream repository: https://github.com/ctu-vras/ros-utils.git
+- release repository: https://github.com/ros2-gbp/cras_ros_utils-release.git
+- rosdistro version: `3.0.1-1`
+- old version: `3.0.1-1`
+- new version: `4.0.1-1`
+
+Versions of tools used:
+
+- bloom version: `0.14.3`
+- catkin_pkg version: `1.1.0`
+- rosdep version: `0.26.0`
+- rosdistro version: `1.0.1`
+- vcstools version: `0.1.42`
+
+
 ## cras_ros_utils (lyrical) - 4.0.1-1
 
 The packages in the `cras_ros_utils` repository were released into the `lyrical` distro by running `/home/peci1/.local/bin/bloom-release -r lyrical cras_ros_utils` on `Sun, 23 Aug 2026 00:42:06 -0000`
