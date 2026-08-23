@@ -22,31 +22,31 @@
 
 using namespace cras;
 using namespace rclcpp;
+using namespace std::chrono_literals;
 
-// // The following testcase has to be the first one because it tests what happens when time is not initialized!
+//// The following testcase has to be the first one because it tests what happens when time is not initialized!
 // TEST(TimeUtils, NowFallbackToWall)  // NOLINT
 // {
-//   // Before time is initialized, nowFallbackToWall() should return wall time
-//   auto t = cras::nowFallbackToWall();
-//   const auto wall = rclcpp::WallTime::now();
-//   const auto wallTime = rclcpp::Time(wall.sec, wall.nsec);
-//   EXPECT_LT((wallTime > t) ? (wallTime - t) : (t - wallTime), rclcpp::Duration(0.1));
+//// Before time is initialized, nowFallbackToWall() should return wall time
+// auto t = cras::nowFallbackToWall();
+// const auto wall = rclcpp::WallTime::now();
+// const auto wallTime = rclcpp::Time(wall.sec, wall.nsec);
+// EXPECT_LT((wallTime > t) ? (wallTime - t) : (t - wallTime), rclcpp::Duration(0.1));
 //
-//   // This is an unrelated testcase, but we need to test both before time is initialized
-//   EXPECT_THROW(remainingTime({99, 0}, {2, 0}), rclcpp::TimeNotInitializedException);
+//// This is an unrelated testcase, but we need to test both before time is initialized
+// EXPECT_THROW(remainingTime({99, 0}, {2, 0}), rclcpp::TimeNotInitializedException);
 //
-//   // After time initialization, it should return ROS time
-//   const auto clock = createTestClock();
-//   setTime(clock, {100, 0});
+//// After time initialization, it should return ROS time
+// const auto clock = createTestClock();
+// setTime(clock, {100, 0});
 //
-//   t = cras::nowFallbackToWall();
-//   EXPECT_EQ(rclcpp::Time::now(), t);
+// t = cras::nowFallbackToWall();
+// EXPECT_EQ(rclcpp::Time::now(), t);
 //
-//   Time::shutdown();
+// Time::shutdown();
 // }
 
-Clock::SharedPtr createTestClock()
-{
+Clock::SharedPtr createTestClock() {
   const auto clock = rclcpp::Clock::make_shared(RCL_ROS_TIME);
   const auto ret = rcl_enable_ros_time_override(clock->get_clock_handle());
   if (ret != RMW_RET_OK)
@@ -54,8 +54,7 @@ Clock::SharedPtr createTestClock()
   return clock;
 }
 
-void setTime(const rclcpp::Clock::SharedPtr& clock, const rclcpp::Time& time)
-{
+void setTime(const rclcpp::Clock::SharedPtr& clock, const rclcpp::Time& time) {
   const auto ret = rcl_set_ros_time_override(
     clock->get_clock_handle(), cras::convertTime<rcl_time_point_value_t>(time));
   if (ret != RMW_RET_OK)
@@ -212,344 +211,344 @@ TEST(TimeUtils, SaturateAddTime)  // NOLINT
 // class TestSleepInterface : public cras::InterruptibleSleepInterface
 // {
 // public:
-//   bool isOk {true};
-//   bool ok() const override
-//   {
-//     return isOk;
-//   }
+// bool isOk {true};
+// bool ok() const override
+// {
+// return isOk;
+// }
 // };
 //
-// /**
-//  * Test that the sleep in InterruptibleSleepInterface has the right duration.
-//  */
+///**
+// * Test that the sleep in InterruptibleSleepInterface has the right duration.
+// */
 // TEST(TimeUtils, SleepInterfaceSimTime)  // NOLINT
 // {
-//   const auto clock = createTestClock();
-//   setTime(clock, {10, 0});
+// const auto clock = createTestClock();
+// setTime(clock, {10, 0});
 //
-//   TestSleepInterface i;
+// TestSleepInterface i;
 //
-//   // Test normal sleep behavior without interruption.
+//// Test normal sleep behavior without interruption.
 //
-//   bool started = false;
-//   bool executed = false;
-//   std::thread([&](){started = true;
-//     EXPECT_TRUE(i.sleep({1, 0}));
-//   executed = true;}).detach();
+// bool started = false;
+// bool executed = false;
+// std::thread([&](){started = true;
+// EXPECT_TRUE(i.sleep({1, 0}));
+// executed = true;}).detach();
 //
-//   auto end = rclcpp::WallTime::now() + rclcpp::WallDuration(0.2);
-//   while (!started && rclcpp::WallTime::now() < end)
-//     rclcpp::WallDuration(0.01).sleep();
+// auto end = rclcpp::WallTime::now() + rclcpp::WallDuration(0.2);
+// while (!started && rclcpp::WallTime::now() < end)
+// rclcpp::WallDuration(0.01).sleep();
 //
-//   EXPECT_TRUE(started);
-//   EXPECT_FALSE(executed);
+// EXPECT_TRUE(started);
+// EXPECT_FALSE(executed);
 //
-//   rclcpp::setTime(clock, rclcpp::Time(10.99));
+// rclcpp::setTime(clock, rclcpp::Time(10.99));
 //
-//   end = rclcpp::WallTime::now() + rclcpp::WallDuration(0.2);
-//   while (!executed && rclcpp::WallTime::now() < end)
-//     rclcpp::WallDuration(0.01).sleep();
-//   EXPECT_FALSE(executed);
+// end = rclcpp::WallTime::now() + rclcpp::WallDuration(0.2);
+// while (!executed && rclcpp::WallTime::now() < end)
+// rclcpp::WallDuration(0.01).sleep();
+// EXPECT_FALSE(executed);
 //
-//   rclcpp::setTime(clock, rclcpp::Time(11, 0));
+// rclcpp::setTime(clock, rclcpp::Time(11, 0));
 //
-//   end = rclcpp::WallTime::now() + rclcpp::WallDuration(0.2);
-//   while (!executed && rclcpp::WallTime::now() < end)
-//     rclcpp::WallDuration(0.01).sleep();
-//   EXPECT_TRUE(executed);
+// end = rclcpp::WallTime::now() + rclcpp::WallDuration(0.2);
+// while (!executed && rclcpp::WallTime::now() < end)
+// rclcpp::WallDuration(0.01).sleep();
+// EXPECT_TRUE(executed);
 //
-//   end = rclcpp::WallTime::now() + rclcpp::WallDuration(0.2);
-//   while (!executed && rclcpp::WallTime::now() < end)
-//     rclcpp::WallDuration(0.01).sleep();
+// end = rclcpp::WallTime::now() + rclcpp::WallDuration(0.2);
+// while (!executed && rclcpp::WallTime::now() < end)
+// rclcpp::WallDuration(0.01).sleep();
 // }
 //
-// /**
-//  * Test that the sleep in InterruptibleSleepInterface has the right duration.
-//  */
+///**
+// * Test that the sleep in InterruptibleSleepInterface has the right duration.
+// */
 // TEST(TimeUtils, SleepInterfaceWallTime)  // NOLINT
 // {
-//   const auto clock = createTestClock();
-//   ASSERT_TRUE(Time::isSystemTime());
+// const auto clock = createTestClock();
+// ASSERT_TRUE(Time::isSystemTime());
 //
-//   TestSleepInterface i;
+// TestSleepInterface i;
 //
-//   // Test normal sleep behavior without interruption.
+//// Test normal sleep behavior without interruption.
 //
-//   bool started = false;
-//   bool executed = false;
-//   std::thread([&](){started = true;
-//     auto startTime = rclcpp::WallTime::now();
-//     EXPECT_TRUE(i.sleep({1, 0}));
-//     auto duration = rclcpp::WallTime::now() - startTime;
-//     EXPECT_GT(1.1, duration.seconds());
-//     EXPECT_LT(1.0, duration.seconds());
-//   executed = true;}).detach();
+// bool started = false;
+// bool executed = false;
+// std::thread([&](){started = true;
+// auto startTime = rclcpp::WallTime::now();
+// EXPECT_TRUE(i.sleep({1, 0}));
+// auto duration = rclcpp::WallTime::now() - startTime;
+// EXPECT_GT(1.1, duration.seconds());
+// EXPECT_LT(1.0, duration.seconds());
+// executed = true;}).detach();
 //
-//   auto end = rclcpp::WallTime::now() + rclcpp::WallDuration(1.5);
-//   while ((!started || !executed) && rclcpp::WallTime::now() < end)
-//     rclcpp::WallDuration(0.01).sleep();
+// auto end = rclcpp::WallTime::now() + rclcpp::WallDuration(1.5);
+// while ((!started || !executed) && rclcpp::WallTime::now() < end)
+// rclcpp::WallDuration(0.01).sleep();
 //
-//   EXPECT_TRUE(started);
-//   EXPECT_TRUE(executed);
+// EXPECT_TRUE(started);
+// EXPECT_TRUE(executed);
 // }
 //
-// /**
-//  * Test that the sleeps in InterruptibleSleepInterface can be interrupted by various methods.
-//  */
+///**
+// * Test that the sleeps in InterruptibleSleepInterface can be interrupted by various methods.
+// */
 // TEST(TimeUtils, SleepInterfaceInterrupt)  // NOLINT
 // {
-//   const auto clock = createTestClock();
-//   setTime(clock, {10, 0});
+// const auto clock = createTestClock();
+// setTime(clock, {10, 0});
 //
-//   TestSleepInterface i;
+// TestSleepInterface i;
 //
-//   // Test normal sleep behavior without interruption.
+//// Test normal sleep behavior without interruption.
 //
-//   bool started = false;
-//   bool executed = false;
-//   std::thread([&](){started = true;
-//     EXPECT_TRUE(i.sleep({1, 0}));
-//   executed = true;}).detach();
+// bool started = false;
+// bool executed = false;
+// std::thread([&](){started = true;
+// EXPECT_TRUE(i.sleep({1, 0}));
+// executed = true;}).detach();
 //
-//   auto end = rclcpp::WallTime::now() + rclcpp::WallDuration(0.2);
-//   while (!started && rclcpp::WallTime::now() < end)
-//     rclcpp::WallDuration(0.01).sleep();
+// auto end = rclcpp::WallTime::now() + rclcpp::WallDuration(0.2);
+// while (!started && rclcpp::WallTime::now() < end)
+// rclcpp::WallDuration(0.01).sleep();
 //
-//   EXPECT_TRUE(started);
-//   EXPECT_FALSE(executed);
+// EXPECT_TRUE(started);
+// EXPECT_FALSE(executed);
 //
-//   rclcpp::WallDuration(0.2).sleep();
-//   EXPECT_FALSE(executed);
+// rclcpp::WallDuration(0.2).sleep();
+// EXPECT_FALSE(executed);
 //
-//   rclcpp::setTime(clock, {11, 1000});
+// rclcpp::setTime(clock, {11, 1000});
 //
-//   end = rclcpp::WallTime::now() + rclcpp::WallDuration(0.2);
-//   while (!executed && rclcpp::WallTime::now() < end)
-//     rclcpp::WallDuration(0.01).sleep();
+// end = rclcpp::WallTime::now() + rclcpp::WallDuration(0.2);
+// while (!executed && rclcpp::WallTime::now() < end)
+// rclcpp::WallDuration(0.01).sleep();
 //
-//   EXPECT_TRUE(executed);
+// EXPECT_TRUE(executed);
 //
-//   // Test interrupting a running sleep by setting ok() to false.
+//// Test interrupting a running sleep by setting ok() to false.
 //
-//   rclcpp::setTime(clock, {10, 0});
+// rclcpp::setTime(clock, {10, 0});
 //
-//   started = false;
-//   executed = false;
-//   std::thread([&](){started = true;
-//     EXPECT_FALSE(i.sleep({1, 0}));
-//   executed = true;}).detach();
+// started = false;
+// executed = false;
+// std::thread([&](){started = true;
+// EXPECT_FALSE(i.sleep({1, 0}));
+// executed = true;}).detach();
 //
-//   end = rclcpp::WallTime::now() + rclcpp::WallDuration(0.2);
-//   while (!started && rclcpp::WallTime::now() < end)
-//     rclcpp::WallDuration(0.01).sleep();
+// end = rclcpp::WallTime::now() + rclcpp::WallDuration(0.2);
+// while (!started && rclcpp::WallTime::now() < end)
+// rclcpp::WallDuration(0.01).sleep();
 //
-//   EXPECT_TRUE(started);
-//   EXPECT_FALSE(executed);
+// EXPECT_TRUE(started);
+// EXPECT_FALSE(executed);
 //
-//   rclcpp::WallDuration(0.2).sleep();
-//   EXPECT_FALSE(executed);
+// rclcpp::WallDuration(0.2).sleep();
+// EXPECT_FALSE(executed);
 //
-//   i.isOk = false;
+// i.isOk = false;
 //
-//   end = rclcpp::WallTime::now() + rclcpp::WallDuration(0.2);
-//   while (!executed && rclcpp::WallTime::now() < end)
-//     rclcpp::WallDuration(0.01).sleep();
+// end = rclcpp::WallTime::now() + rclcpp::WallDuration(0.2);
+// while (!executed && rclcpp::WallTime::now() < end)
+// rclcpp::WallDuration(0.01).sleep();
 //
-//   EXPECT_TRUE(executed);
+// EXPECT_TRUE(executed);
 //
-//   // Test two simultaneous sleeps where the second one should end earlier than the first one.
+//// Test two simultaneous sleeps where the second one should end earlier than the first one.
 //
-//   rclcpp::setTime(clock, {10, 0});
-//   i.isOk = true;
+// rclcpp::setTime(clock, {10, 0});
+// i.isOk = true;
 //
-//   started = false;
-//   executed = false;
-//   std::thread([&](){started = true;
-//     EXPECT_TRUE(i.sleep({1, 0}));
-//   executed = true;}).detach();
+// started = false;
+// executed = false;
+// std::thread([&](){started = true;
+// EXPECT_TRUE(i.sleep({1, 0}));
+// executed = true;}).detach();
 //
-//   end = rclcpp::WallTime::now() + rclcpp::WallDuration(0.2);
-//   while (!started && rclcpp::WallTime::now() < end)
-//     rclcpp::WallDuration(0.01).sleep();
+// end = rclcpp::WallTime::now() + rclcpp::WallDuration(0.2);
+// while (!started && rclcpp::WallTime::now() < end)
+// rclcpp::WallDuration(0.01).sleep();
 //
-//   EXPECT_TRUE(started);
-//   EXPECT_FALSE(executed);
+// EXPECT_TRUE(started);
+// EXPECT_FALSE(executed);
 //
-//   auto started2 = false;
-//   auto executed2 = false;
-//   std::thread([&](){started2 = true;
-//     EXPECT_TRUE(i.sleep(rclcpp::Duration(0.1)));
-//   executed2 = true;}).detach();
+// auto started2 = false;
+// auto executed2 = false;
+// std::thread([&](){started2 = true;
+// EXPECT_TRUE(i.sleep(rclcpp::Duration(0.1)));
+// executed2 = true;}).detach();
 //
-//   end = rclcpp::WallTime::now() + rclcpp::WallDuration(0.2);
-//   while (!started2 && rclcpp::WallTime::now() < end)
-//     rclcpp::WallDuration(0.01).sleep();
+// end = rclcpp::WallTime::now() + rclcpp::WallDuration(0.2);
+// while (!started2 && rclcpp::WallTime::now() < end)
+// rclcpp::WallDuration(0.01).sleep();
 //
-//   EXPECT_TRUE(started);
-//   EXPECT_TRUE(started2);
-//   EXPECT_FALSE(executed);
-//   EXPECT_FALSE(executed2);
+// EXPECT_TRUE(started);
+// EXPECT_TRUE(started2);
+// EXPECT_FALSE(executed);
+// EXPECT_FALSE(executed2);
 //
-//   rclcpp::WallDuration(0.2).sleep();
-//   EXPECT_FALSE(executed);
-//   EXPECT_FALSE(executed2);
+// rclcpp::WallDuration(0.2).sleep();
+// EXPECT_FALSE(executed);
+// EXPECT_FALSE(executed2);
 //
-//   rclcpp::setTime(clock, rclcpp::Time(10.11));
+// rclcpp::setTime(clock, rclcpp::Time(10.11));
 //
-//   end = rclcpp::WallTime::now() + rclcpp::WallDuration(0.2);
-//   while (!executed2 && rclcpp::WallTime::now() < end)
-//     rclcpp::WallDuration(0.01).sleep();
+// end = rclcpp::WallTime::now() + rclcpp::WallDuration(0.2);
+// while (!executed2 && rclcpp::WallTime::now() < end)
+// rclcpp::WallDuration(0.01).sleep();
 //
-//   EXPECT_FALSE(executed);
-//   EXPECT_TRUE(executed2);
+// EXPECT_FALSE(executed);
+// EXPECT_TRUE(executed2);
 //
-//   rclcpp::setTime(clock, {11, 1000});
+// rclcpp::setTime(clock, {11, 1000});
 //
-//   end = rclcpp::WallTime::now() + rclcpp::WallDuration(0.2);
-//   while (!executed && rclcpp::WallTime::now() < end)
-//     rclcpp::WallDuration(0.01).sleep();
+// end = rclcpp::WallTime::now() + rclcpp::WallDuration(0.2);
+// while (!executed && rclcpp::WallTime::now() < end)
+// rclcpp::WallDuration(0.01).sleep();
 //
-//   EXPECT_TRUE(executed);
+// EXPECT_TRUE(executed);
 //
-//   // Test simultaneous sleeps and setting ok() to false during them.
+//// Test simultaneous sleeps and setting ok() to false during them.
 //
-//   rclcpp::setTime(clock, {10, 0});
-//   i.isOk = true;
+// rclcpp::setTime(clock, {10, 0});
+// i.isOk = true;
 //
-//   started = false;
-//   executed = false;
-//   std::thread([&](){started = true;
-//     EXPECT_FALSE(i.sleep({1, 0}));
-//   executed = true;}).detach();
+// started = false;
+// executed = false;
+// std::thread([&](){started = true;
+// EXPECT_FALSE(i.sleep({1, 0}));
+// executed = true;}).detach();
 //
-//   end = rclcpp::WallTime::now() + rclcpp::WallDuration(0.2);
-//   while (!started && rclcpp::WallTime::now() < end)
-//     rclcpp::WallDuration(0.01).sleep();
+// end = rclcpp::WallTime::now() + rclcpp::WallDuration(0.2);
+// while (!started && rclcpp::WallTime::now() < end)
+// rclcpp::WallDuration(0.01).sleep();
 //
-//   EXPECT_TRUE(started);
-//   EXPECT_FALSE(executed);
+// EXPECT_TRUE(started);
+// EXPECT_FALSE(executed);
 //
-//   started2 = false;
-//   executed2 = false;
-//   std::thread([&](){started2 = true;
-//     EXPECT_FALSE(i.sleep({1, 0}));
-//   executed2 = true;}).detach();
+// started2 = false;
+// executed2 = false;
+// std::thread([&](){started2 = true;
+// EXPECT_FALSE(i.sleep({1, 0}));
+// executed2 = true;}).detach();
 //
-//   end = rclcpp::WallTime::now() + rclcpp::WallDuration(0.2);
-//   while (!started2 && rclcpp::WallTime::now() < end)
-//     rclcpp::WallDuration(0.01).sleep();
+// end = rclcpp::WallTime::now() + rclcpp::WallDuration(0.2);
+// while (!started2 && rclcpp::WallTime::now() < end)
+// rclcpp::WallDuration(0.01).sleep();
 //
-//   EXPECT_TRUE(started);
-//   EXPECT_TRUE(started2);
-//   EXPECT_FALSE(executed);
-//   EXPECT_FALSE(executed2);
+// EXPECT_TRUE(started);
+// EXPECT_TRUE(started2);
+// EXPECT_FALSE(executed);
+// EXPECT_FALSE(executed2);
 //
-//   rclcpp::WallDuration(0.1).sleep();
-//   EXPECT_FALSE(executed);
-//   EXPECT_FALSE(executed2);
+// rclcpp::WallDuration(0.1).sleep();
+// EXPECT_FALSE(executed);
+// EXPECT_FALSE(executed2);
 //
-//   rclcpp::setTime(clock, rclcpp::Time(10.1));
+// rclcpp::setTime(clock, rclcpp::Time(10.1));
 //
-//   end = rclcpp::WallTime::now() + rclcpp::WallDuration(0.2);
-//   while (!executed2 && rclcpp::WallTime::now() < end)
-//     rclcpp::WallDuration(0.01).sleep();
+// end = rclcpp::WallTime::now() + rclcpp::WallDuration(0.2);
+// while (!executed2 && rclcpp::WallTime::now() < end)
+// rclcpp::WallDuration(0.01).sleep();
 //
-//   EXPECT_FALSE(executed);
-//   EXPECT_FALSE(executed2);
+// EXPECT_FALSE(executed);
+// EXPECT_FALSE(executed2);
 //
-//   i.isOk = false;
+// i.isOk = false;
 //
-//   end = rclcpp::WallTime::now() + rclcpp::WallDuration(0.2);
-//   while (!executed && rclcpp::WallTime::now() < end)
-//     rclcpp::WallDuration(0.01).sleep();
+// end = rclcpp::WallTime::now() + rclcpp::WallDuration(0.2);
+// while (!executed && rclcpp::WallTime::now() < end)
+// rclcpp::WallDuration(0.01).sleep();
 //
-//   EXPECT_TRUE(executed);
-//   EXPECT_TRUE(executed2);
+// EXPECT_TRUE(executed);
+// EXPECT_TRUE(executed2);
 //
 // }
 //
-// /**
-//  * \brief Test that InterruptibleSleepInterface can interrupt an ongoing sleep also when using WallTime.
-//  */
+///**
+// * \brief Test that InterruptibleSleepInterface can interrupt an ongoing sleep also when using WallTime.
+// */
 // TEST(TimeUtils, SleepInterfaceInterruptWallTime)  // NOLINT
 // {
-//   const auto clock = createTestClock();
-//   ASSERT_TRUE(Time::isSystemTime());
+// const auto clock = createTestClock();
+// ASSERT_TRUE(Time::isSystemTime());
 //
-//   auto i = std::make_shared<TestSleepInterface>();
+// auto i = std::make_shared<TestSleepInterface>();
 //
-//   auto startTime = rclcpp::WallTime::now();
+// auto startTime = rclcpp::WallTime::now();
 //
-//   bool started = false;
-//   bool executed = false;
-//   std::thread([&](){started = true;
-//     EXPECT_FALSE(i->sleep({10, 0}));
-//   executed = true;}).detach();
+// bool started = false;
+// bool executed = false;
+// std::thread([&](){started = true;
+// EXPECT_FALSE(i->sleep({10, 0}));
+// executed = true;}).detach();
 //
-//   auto end = rclcpp::WallTime::now() + rclcpp::WallDuration(0.2);
-//   while (!started && rclcpp::WallTime::now() < end)
-//     rclcpp::WallDuration(0.01).sleep();
+// auto end = rclcpp::WallTime::now() + rclcpp::WallDuration(0.2);
+// while (!started && rclcpp::WallTime::now() < end)
+// rclcpp::WallDuration(0.01).sleep();
 //
-//   EXPECT_TRUE(started);
-//   EXPECT_FALSE(executed);
+// EXPECT_TRUE(started);
+// EXPECT_FALSE(executed);
 //
-//   rclcpp::WallDuration(0.2).sleep();
-//   EXPECT_FALSE(executed);
+// rclcpp::WallDuration(0.2).sleep();
+// EXPECT_FALSE(executed);
 //
-//   i->isOk = false;
+// i->isOk = false;
 //
-//   end = rclcpp::WallTime::now() + rclcpp::WallDuration(0.2);
-//   while (!executed && rclcpp::WallTime::now() < end)
-//     rclcpp::WallDuration(0.01).sleep();
+// end = rclcpp::WallTime::now() + rclcpp::WallDuration(0.2);
+// while (!executed && rclcpp::WallTime::now() < end)
+// rclcpp::WallDuration(0.01).sleep();
 //
-//   EXPECT_TRUE(executed);
+// EXPECT_TRUE(executed);
 //
-//   const auto duration = rclcpp::WallTime::now() - startTime;
-//   EXPECT_GT(10.0, duration.seconds());
+// const auto duration = rclcpp::WallTime::now() - startTime;
+// EXPECT_GT(10.0, duration.seconds());
 // }
 //
-// /**
-//  * \brief Test that InterruptibleSleepInterface can interrupt an ongoing sleep if it is being destroyed.
-//  */
+///**
+// * \brief Test that InterruptibleSleepInterface can interrupt an ongoing sleep if it is being destroyed.
+// */
 // TEST(TimeUtils, SleepInterfaceDestructor)  // NOLINT
 // {
-//   const auto clock = createTestClock();
-//   setTime(clock, {10, 0});
+// const auto clock = createTestClock();
+// setTime(clock, {10, 0});
 //
-//   auto i = std::make_shared<TestSleepInterface>();
+// auto i = std::make_shared<TestSleepInterface>();
 //
-//   bool started = false;
-//   bool executed = false;
-//   std::thread([&](){started = true;
-//     EXPECT_FALSE(i->sleep({1, 0}));
-//   executed = true;}).detach();
+// bool started = false;
+// bool executed = false;
+// std::thread([&](){started = true;
+// EXPECT_FALSE(i->sleep({1, 0}));
+// executed = true;}).detach();
 //
-//   auto end = rclcpp::WallTime::now() + rclcpp::WallDuration(0.2);
-//   while (!started && rclcpp::WallTime::now() < end)
-//     rclcpp::WallDuration(0.01).sleep();
+// auto end = rclcpp::WallTime::now() + rclcpp::WallDuration(0.2);
+// while (!started && rclcpp::WallTime::now() < end)
+// rclcpp::WallDuration(0.01).sleep();
 //
-//   EXPECT_TRUE(started);
-//   EXPECT_FALSE(executed);
+// EXPECT_TRUE(started);
+// EXPECT_FALSE(executed);
 //
-//   rclcpp::WallDuration(0.2).sleep();
-//   EXPECT_FALSE(executed);
+// rclcpp::WallDuration(0.2).sleep();
+// EXPECT_FALSE(executed);
 //
-//   bool started2 = false;
-//   bool executed2 = false;
+// bool started2 = false;
+// bool executed2 = false;
 //
-//   // Destroy the sleep interface object and make sure both the destruction and the ongoing sleep have finished on time.
+//// Destroy the sleep interface object and make sure both the destruction and the ongoing sleep have finished on time.
 //
-//   std::thread([&](){started2 = true;
-//     i.reset();
-//   executed2 = true;}).detach();
+// std::thread([&](){started2 = true;
+// i.reset();
+// executed2 = true;}).detach();
 //
-//   end = rclcpp::WallTime::now() + rclcpp::WallDuration(0.2);
-//   while ((!started2 || !executed2 || !executed) && rclcpp::WallTime::now() < end)
-//     rclcpp::WallDuration(0.01).sleep();
+// end = rclcpp::WallTime::now() + rclcpp::WallDuration(0.2);
+// while ((!started2 || !executed2 || !executed) && rclcpp::WallTime::now() < end)
+// rclcpp::WallDuration(0.01).sleep();
 //
-//   EXPECT_TRUE(executed);
-//   EXPECT_TRUE(executed2);
-//   EXPECT_TRUE(started2);
+// EXPECT_TRUE(executed);
+// EXPECT_TRUE(executed2);
+// EXPECT_TRUE(started2);
 // }
 
 TEST(TimeUtils, TimeType)  // NOLINT
@@ -561,7 +560,19 @@ TEST(TimeUtils, TimeType)  // NOLINT
   static_assert(cras::TimeType<int64_t>::value);
   static_assert(cras::TimeType<double>::value);
   static_assert(cras::TimeType<std::chrono::system_clock::time_point>::value);
-  static_assert(cras::TimeType<std::chrono::steady_clock::time_point>::value);
+  static_assert(cras::TimeType<std::chrono::time_point<std::chrono::system_clock, std::chrono::seconds>>::value);
+  static_assert(
+    TimeType<std::chrono::time_point<
+      std::chrono::system_clock, std::chrono::duration<std::chrono::seconds, double>
+    >>::value);
+  // Steady clock has no bound to wall clock so we can't use it as ROS time
+  static_assert(!cras::TimeType<std::chrono::steady_clock::time_point>::value);
+#ifdef cras_has_chrono_clocks_support
+  static_assert(cras::TimeType<std::chrono::file_clock::time_point>::value);
+  static_assert(cras::TimeType<std::chrono::gps_clock::time_point>::value);
+  static_assert(cras::TimeType<std::chrono::tai_clock::time_point>::value);
+  static_assert(cras::TimeType<std::chrono::utc_clock::time_point>::value);
+#endif
 
   static_assert(!cras::TimeType<rclcpp::Duration>::value);
   static_assert(!cras::TimeType<rcl_duration_t>::value);
@@ -583,17 +594,22 @@ TEST(TimeUtils, TimeSecNsec)  // NOLINT
 TEST(TimeUtils, DurationType)  // NOLINT
 {
   static_assert(cras::DurationType<rclcpp::Duration>::value);
-  static_assert(cras::DurationType<rcl_duration_t>::value);
-  static_assert(cras::DurationType<rcl_duration_value_t>::value);
   static_assert(cras::DurationType<builtin_interfaces::msg::Duration>::value);
-  static_assert(cras::DurationType<int64_t>::value);
+  static_assert(cras::DurationType<rcl_duration_t>::value);
+  static_assert(cras::DurationType<rcutils_duration_value_t>::value);
+  static_assert(cras::DurationType<rmw_time_t>::value);
   static_assert(cras::DurationType<double>::value);
   static_assert(cras::DurationType<std::chrono::nanoseconds>::value);
+  static_assert(cras::DurationType<std::chrono::seconds>::value);
+  static_assert(cras::DurationType<std::chrono::duration<double, ::std::milli>>::value);
+
+  static_assert(cras::is_duration_v<std::chrono::nanoseconds>);
+  static_assert(cras::is_duration_v<std::chrono::duration<double, ::std::milli>>);
 
   static_assert(!cras::DurationType<rclcpp::Time>::value);
+  static_assert(!cras::DurationType<builtin_interfaces::msg::Time>::value);
   static_assert(!cras::DurationType<rcl_time_point_t>::value);
   static_assert(!cras::DurationType<std::chrono::system_clock::time_point>::value);
-  static_assert(!cras::DurationType<builtin_interfaces::msg::Time>::value);
 }
 
 TEST(TimeUtils, DurationSecNsec)  // NOLINT
@@ -609,32 +625,269 @@ TEST(TimeUtils, DurationSecNsec)  // NOLINT
 
 TEST(TimeUtils, ConvertTime)  // NOLINT
 {
-  builtin_interfaces::msg::Time timeMsg;
-  timeMsg.sec = 1;
-  timeMsg.nanosec = 2;
-
   const rclcpp::Time timeRclcpp(1, 2, RCL_SYSTEM_TIME);
   const rclcpp::Time timeRclcppRos(1, 2, RCL_ROS_TIME);
+  const auto timeMsg = builtin_interfaces::msg::builder::Init_Time_sec().sec(1).nanosec(2);
+  const rcl_time_point_t timeRcl(1'000'000'000 + 2, RCL_SYSTEM_TIME);
+  const rcutils_time_point_value_t timeRcutils(1'000'000'000 + 2);
+  const rmw_time_t timeRmw(1, 2);
+  const double timeDouble(1.000000002);
+  const tm timeTm{.tm_sec = 1, .tm_mday = 1, .tm_year = 70};
+  const std::chrono::system_clock::time_point timeChrono(1s + 2ns);
 
   EXPECT_EQ(timeRclcpp, cras::convertTime(timeMsg, RCL_SYSTEM_TIME));
   EXPECT_EQ(timeRclcppRos, cras::convertTime(timeMsg, RCL_ROS_TIME));
-  EXPECT_EQ(timeMsg, cras::convertTime<builtin_interfaces::msg::Time>(timeRclcpp));
+
+  {
+    const auto t = timeRclcpp;
+    EXPECT_EQ(timeRclcpp, cras::convertTime<rclcpp::Time>(t));
+    EXPECT_EQ(timeMsg, cras::convertTime<builtin_interfaces::msg::Time>(t));
+    EXPECT_EQ(timeRcl.nanoseconds, cras::convertTime<rcl_time_point_t>(t).nanoseconds);
+    EXPECT_EQ(timeRcl.clock_type, cras::convertTime<rcl_time_point_t>(t).clock_type);
+    EXPECT_EQ(timeRcutils, cras::convertTime<rcutils_time_point_value_t>(t));
+    EXPECT_EQ(timeRmw.sec, cras::convertTime<rmw_time_t>(t).sec);
+    EXPECT_EQ(timeRmw.nsec, cras::convertTime<rmw_time_t>(t).nsec);
+    EXPECT_FLOAT_EQ(timeDouble, cras::convertTime<double>(t));
+    EXPECT_EQ(timeChrono, cras::convertTime<std::chrono::system_clock::time_point>(t));
+  }
+
+  {
+    const auto t = timeMsg;
+    EXPECT_EQ(timeRclcpp, cras::convertTime<rclcpp::Time>(t));
+    EXPECT_EQ(timeMsg, cras::convertTime<builtin_interfaces::msg::Time>(t));
+    EXPECT_EQ(timeRcl.nanoseconds, cras::convertTime<rcl_time_point_t>(t).nanoseconds);
+    EXPECT_EQ(timeRcl.clock_type, cras::convertTime<rcl_time_point_t>(t).clock_type);
+    EXPECT_EQ(timeRcutils, cras::convertTime<rcutils_time_point_value_t>(t));
+    EXPECT_EQ(timeRmw.sec, cras::convertTime<rmw_time_t>(t).sec);
+    EXPECT_EQ(timeRmw.nsec, cras::convertTime<rmw_time_t>(t).nsec);
+    EXPECT_FLOAT_EQ(timeDouble, cras::convertTime<double>(t));
+    EXPECT_EQ(timeChrono, cras::convertTime<std::chrono::system_clock::time_point>(t));
+  }
+
+  {
+    const auto t = timeRcl;
+    EXPECT_EQ(timeRclcpp, cras::convertTime<rclcpp::Time>(t));
+    EXPECT_EQ(timeMsg, cras::convertTime<builtin_interfaces::msg::Time>(t));
+    EXPECT_EQ(timeRcl.nanoseconds, cras::convertTime<rcl_time_point_t>(t).nanoseconds);
+    EXPECT_EQ(timeRcl.clock_type, cras::convertTime<rcl_time_point_t>(t).clock_type);
+    EXPECT_EQ(timeRcutils, cras::convertTime<rcutils_time_point_value_t>(t));
+    EXPECT_EQ(timeRmw.sec, cras::convertTime<rmw_time_t>(t).sec);
+    EXPECT_EQ(timeRmw.nsec, cras::convertTime<rmw_time_t>(t).nsec);
+    EXPECT_FLOAT_EQ(timeDouble, cras::convertTime<double>(t));
+    EXPECT_EQ(timeChrono, cras::convertTime<std::chrono::system_clock::time_point>(t));
+  }
+
+  {
+    const auto t = timeRcutils;
+    EXPECT_EQ(timeRclcpp, cras::convertTime<rclcpp::Time>(t));
+    EXPECT_EQ(timeMsg, cras::convertTime<builtin_interfaces::msg::Time>(t));
+    EXPECT_EQ(timeRcl.nanoseconds, cras::convertTime<rcl_time_point_t>(t).nanoseconds);
+    EXPECT_EQ(timeRcl.clock_type, cras::convertTime<rcl_time_point_t>(t).clock_type);
+    EXPECT_EQ(timeRcutils, cras::convertTime<rcutils_time_point_value_t>(t));
+    EXPECT_EQ(timeRmw.sec, cras::convertTime<rmw_time_t>(t).sec);
+    EXPECT_EQ(timeRmw.nsec, cras::convertTime<rmw_time_t>(t).nsec);
+    EXPECT_FLOAT_EQ(timeDouble, cras::convertTime<double>(t));
+    EXPECT_EQ(timeChrono, cras::convertTime<std::chrono::system_clock::time_point>(t));
+  }
+
+  {
+    const auto t = timeRmw;
+    EXPECT_EQ(timeRclcpp, cras::convertTime<rclcpp::Time>(t));
+    EXPECT_EQ(timeMsg, cras::convertTime<builtin_interfaces::msg::Time>(t));
+    EXPECT_EQ(timeRcl.nanoseconds, cras::convertTime<rcl_time_point_t>(t).nanoseconds);
+    EXPECT_EQ(timeRcl.clock_type, cras::convertTime<rcl_time_point_t>(t).clock_type);
+    EXPECT_EQ(timeRcutils, cras::convertTime<rcutils_time_point_value_t>(t));
+    EXPECT_EQ(timeRmw.sec, cras::convertTime<rmw_time_t>(t).sec);
+    EXPECT_EQ(timeRmw.nsec, cras::convertTime<rmw_time_t>(t).nsec);
+    EXPECT_FLOAT_EQ(timeDouble, cras::convertTime<double>(t));
+    EXPECT_EQ(timeChrono, cras::convertTime<std::chrono::system_clock::time_point>(t));
+  }
+
+  {
+    const auto t = timeDouble;
+    const auto eps = 2;
+    EXPECT_NEAR(timeRclcpp.nanoseconds(), cras::convertTime<rclcpp::Time>(t).nanoseconds(), eps);
+    EXPECT_EQ(timeMsg.sec, cras::convertTime<builtin_interfaces::msg::Time>(t).sec);
+    EXPECT_NEAR(timeMsg.nanosec, cras::convertTime<builtin_interfaces::msg::Time>(t).nanosec, eps);
+    EXPECT_NEAR(timeRcl.nanoseconds, cras::convertTime<rcl_time_point_t>(t).nanoseconds, eps);
+    EXPECT_EQ(timeRcl.clock_type, cras::convertTime<rcl_time_point_t>(t).clock_type);
+    EXPECT_NEAR(timeRcutils, cras::convertTime<rcutils_time_point_value_t>(t), eps);
+    EXPECT_EQ(timeRmw.sec, cras::convertTime<rmw_time_t>(t).sec);
+    EXPECT_NEAR(timeRmw.nsec, cras::convertTime<rmw_time_t>(t).nsec, eps);
+    EXPECT_FLOAT_EQ(timeDouble, cras::convertTime<double>(t));
+    EXPECT_NEAR(
+      timeChrono.time_since_epoch().count(),
+      cras::convertTime<std::chrono::system_clock::time_point>(t).time_since_epoch().count(),
+      eps);
+  }
+
+  {
+    const auto t = timeTm;
+    EXPECT_EQ(rclcpp::Time(1, 0), cras::convertTime<rclcpp::Time>(t));
+    EXPECT_EQ(
+      builtin_interfaces::msg::builder::Init_Time_sec().sec(1).nanosec(0),
+      cras::convertTime<builtin_interfaces::msg::Time>(t));
+    EXPECT_EQ(1'000'000'000, cras::convertTime<rcl_time_point_t>(t).nanoseconds);
+    EXPECT_EQ(timeRcl.clock_type, cras::convertTime<rcl_time_point_t>(t).clock_type);
+    EXPECT_EQ(1'000'000'000, cras::convertTime<rcutils_time_point_value_t>(t));
+    EXPECT_EQ(timeRmw.sec, cras::convertTime<rmw_time_t>(t).sec);
+    EXPECT_EQ(0, cras::convertTime<rmw_time_t>(t).nsec);
+    EXPECT_FLOAT_EQ(1.0, cras::convertTime<double>(t));
+    EXPECT_EQ(
+      std::chrono::system_clock::time_point(std::chrono::seconds(1)),
+      cras::convertTime<std::chrono::system_clock::time_point>(t));
+  }
+
+  {
+    const auto t = timeChrono;
+    EXPECT_EQ(timeRclcpp, cras::convertTime<rclcpp::Time>(t));
+    EXPECT_EQ(timeMsg, cras::convertTime<builtin_interfaces::msg::Time>(t));
+    EXPECT_EQ(timeRcl.nanoseconds, cras::convertTime<rcl_time_point_t>(t).nanoseconds);
+    EXPECT_EQ(timeRcl.clock_type, cras::convertTime<rcl_time_point_t>(t).clock_type);
+    EXPECT_EQ(timeRcutils, cras::convertTime<rcutils_time_point_value_t>(t));
+    EXPECT_EQ(timeRmw.sec, cras::convertTime<rmw_time_t>(t).sec);
+    EXPECT_EQ(timeRmw.nsec, cras::convertTime<rmw_time_t>(t).nsec);
+    EXPECT_FLOAT_EQ(timeDouble, cras::convertTime<double>(t));
+    EXPECT_EQ(timeChrono, cras::convertTime<std::chrono::system_clock::time_point>(t));
+  }
+
+
+  using std::chrono::system_clock;
+  using std::chrono::seconds;
+  using std::chrono::nanoseconds;
+  using std::chrono::time_point;
+
+  const auto timeChronoS = std::chrono::time_point_cast<seconds>(timeChrono);
+  const auto timeChronoSN = std::chrono::time_point_cast<nanoseconds>(timeChronoS);  // nanoseconds are gone
+
+  EXPECT_EQ(timeChrono, cras::convertTime<system_clock::time_point>(timeChrono));
+  EXPECT_EQ(timeChronoSN, cras::convertTime<system_clock::time_point>(timeChronoS));
+  EXPECT_EQ(timeChronoS, (cras::convertTime<time_point<system_clock, seconds>>(timeChrono)));
+
+#ifdef cras_has_chrono_clocks_support
+  using std::chrono::gps_clock;
+
+  const auto timeGps = std::chrono::clock_cast<gps_clock>(timeChrono);
+  const auto timeGpsS = std::chrono::time_point_cast<seconds>(timeGps);
+  const auto timeGpsSN = std::chrono::time_point_cast<nanoseconds>(timeGpsS);  // nanoseconds are gone
+
+  EXPECT_EQ(timeGps, cras::convertTime<gps_clock::time_point>(timeChrono));
+  EXPECT_EQ(timeChrono, cras::convertTime<system_clock::time_point>(timeGps));
+  EXPECT_EQ(timeGps, cras::convertTime<gps_clock::time_point>(timeGps));
+  EXPECT_EQ(timeGpsSN, cras::convertTime<gps_clock::time_point>(timeGpsS));
+  EXPECT_EQ(timeGpsS, (cras::convertTime<time_point<gps_clock, seconds>>(timeGps)));
+
+  EXPECT_EQ(timeRclcpp, (cras::convertTime<rclcpp::Time>(timeGps)));
+#endif
 }
 
 TEST(TimeUtils, ConvertDuration)  // NOLINT
 {
-  builtin_interfaces::msg::Duration durationMsg;
-  durationMsg.sec = 1;
-  durationMsg.nanosec = 2;
-
   const rclcpp::Duration durationRclcpp(1, 2);
+  const auto durationMsg = builtin_interfaces::msg::builder::Init_Duration_sec().sec(1).nanosec(2);
+  const rcl_duration_t durationRcl(1'000'000'000 + 2);
+  const rcutils_duration_value_t durationRcutils(1'000'000'000 + 2);
+  const rmw_time_t durationRmw(1, 2);
+  const double durationDouble(1.000000002);
+  const std::chrono::nanoseconds durationChrono(1'000'000'000 + 2);
 
-  EXPECT_EQ(durationRclcpp, cras::convertDuration<rclcpp::Duration>(durationMsg));
-  EXPECT_EQ(durationMsg, cras::convertDuration<builtin_interfaces::msg::Duration>(durationRclcpp));
+  {
+    const auto t = durationRclcpp;
+    EXPECT_EQ(durationRclcpp, cras::convertDuration<rclcpp::Duration>(t));
+    EXPECT_EQ(durationMsg, cras::convertDuration<builtin_interfaces::msg::Duration>(t));
+    EXPECT_EQ(durationRcl.nanoseconds, cras::convertDuration<rcl_duration_t>(t).nanoseconds);
+    EXPECT_EQ(durationRcutils, cras::convertDuration<rcutils_duration_value_t>(t));
+    EXPECT_EQ(durationRmw.sec, cras::convertDuration<rmw_time_t>(t).sec);
+    EXPECT_EQ(durationRmw.nsec, cras::convertDuration<rmw_time_t>(t).nsec);
+    EXPECT_FLOAT_EQ(durationDouble, cras::convertDuration<double>(t));
+    EXPECT_EQ(durationChrono, cras::convertDuration<std::chrono::nanoseconds>(t));
+  }
+
+  {
+    const auto t = durationMsg;
+    EXPECT_EQ(durationRclcpp, cras::convertDuration<rclcpp::Duration>(t));
+    EXPECT_EQ(durationMsg, cras::convertDuration<builtin_interfaces::msg::Duration>(t));
+    EXPECT_EQ(durationRcl.nanoseconds, cras::convertDuration<rcl_duration_t>(t).nanoseconds);
+    EXPECT_EQ(durationRcutils, cras::convertDuration<rcutils_duration_value_t>(t));
+    EXPECT_EQ(durationRmw.sec, cras::convertDuration<rmw_time_t>(t).sec);
+    EXPECT_EQ(durationRmw.nsec, cras::convertDuration<rmw_time_t>(t).nsec);
+    EXPECT_FLOAT_EQ(durationDouble, cras::convertDuration<double>(t));
+    EXPECT_EQ(durationChrono, cras::convertDuration<std::chrono::nanoseconds>(t));
+  }
+
+  {
+    const auto t = durationRcl;
+    EXPECT_EQ(durationRclcpp, cras::convertDuration<rclcpp::Duration>(t));
+    EXPECT_EQ(durationMsg, cras::convertDuration<builtin_interfaces::msg::Duration>(t));
+    EXPECT_EQ(durationRcl.nanoseconds, cras::convertDuration<rcl_duration_t>(t).nanoseconds);
+    EXPECT_EQ(durationRcutils, cras::convertDuration<rcutils_duration_value_t>(t));
+    EXPECT_EQ(durationRmw.sec, cras::convertDuration<rmw_time_t>(t).sec);
+    EXPECT_EQ(durationRmw.nsec, cras::convertDuration<rmw_time_t>(t).nsec);
+    EXPECT_FLOAT_EQ(durationDouble, cras::convertDuration<double>(t));
+    EXPECT_EQ(durationChrono, cras::convertDuration<std::chrono::nanoseconds>(t));
+  }
+
+  {
+    const auto t = durationRcutils;
+    EXPECT_EQ(durationRclcpp, cras::convertDuration<rclcpp::Duration>(t));
+    EXPECT_EQ(durationMsg, cras::convertDuration<builtin_interfaces::msg::Duration>(t));
+    EXPECT_EQ(durationRcl.nanoseconds, cras::convertDuration<rcl_duration_t>(t).nanoseconds);
+    EXPECT_EQ(durationRcutils, cras::convertDuration<rcutils_duration_value_t>(t));
+    EXPECT_EQ(durationRmw.sec, cras::convertDuration<rmw_time_t>(t).sec);
+    EXPECT_EQ(durationRmw.nsec, cras::convertDuration<rmw_time_t>(t).nsec);
+    EXPECT_FLOAT_EQ(durationDouble, cras::convertDuration<double>(t));
+    EXPECT_EQ(durationChrono, cras::convertDuration<std::chrono::nanoseconds>(t));
+  }
+
+  {
+    const auto t = durationRmw;
+    EXPECT_EQ(durationRclcpp, cras::convertDuration<rclcpp::Duration>(t));
+    EXPECT_EQ(durationMsg, cras::convertDuration<builtin_interfaces::msg::Duration>(t));
+    EXPECT_EQ(durationRcl.nanoseconds, cras::convertDuration<rcl_duration_t>(t).nanoseconds);
+    EXPECT_EQ(durationRcutils, cras::convertDuration<rcutils_duration_value_t>(t));
+    EXPECT_EQ(durationRmw.sec, cras::convertDuration<rmw_time_t>(t).sec);
+    EXPECT_EQ(durationRmw.nsec, cras::convertDuration<rmw_time_t>(t).nsec);
+    EXPECT_FLOAT_EQ(durationDouble, cras::convertDuration<double>(t));
+    EXPECT_EQ(durationChrono, cras::convertDuration<std::chrono::nanoseconds>(t));
+  }
+
+  {
+    const auto t = durationDouble;
+    EXPECT_EQ(durationRclcpp, cras::convertDuration<rclcpp::Duration>(t));
+    EXPECT_EQ(durationMsg, cras::convertDuration<builtin_interfaces::msg::Duration>(t));
+    EXPECT_EQ(durationRcl.nanoseconds, cras::convertDuration<rcl_duration_t>(t).nanoseconds);
+    EXPECT_EQ(durationRcutils, cras::convertDuration<rcutils_duration_value_t>(t));
+    EXPECT_EQ(durationRmw.sec, cras::convertDuration<rmw_time_t>(t).sec);
+    EXPECT_EQ(durationRmw.nsec, cras::convertDuration<rmw_time_t>(t).nsec);
+    EXPECT_FLOAT_EQ(durationDouble, cras::convertDuration<double>(t));
+    EXPECT_EQ(durationChrono, cras::convertDuration<std::chrono::nanoseconds>(t));
+  }
+
+  {
+    const auto t = durationChrono;
+    EXPECT_EQ(durationRclcpp, cras::convertDuration<rclcpp::Duration>(t));
+    EXPECT_EQ(durationMsg, cras::convertDuration<builtin_interfaces::msg::Duration>(t));
+    EXPECT_EQ(durationRcl.nanoseconds, cras::convertDuration<rcl_duration_t>(t).nanoseconds);
+    EXPECT_EQ(durationRcutils, cras::convertDuration<rcutils_duration_value_t>(t));
+    EXPECT_EQ(durationRmw.sec, cras::convertDuration<rmw_time_t>(t).sec);
+    EXPECT_EQ(durationRmw.nsec, cras::convertDuration<rmw_time_t>(t).nsec);
+    EXPECT_FLOAT_EQ(durationDouble, cras::convertDuration<double>(t));
+    EXPECT_EQ(durationChrono, cras::convertDuration<std::chrono::nanoseconds>(t));
+  }
+
+  using std::chrono::seconds;
+  using std::chrono::nanoseconds;
+
+  const auto durationS = std::chrono::duration_cast<seconds>(durationChrono);
+  const auto durationSN = std::chrono::duration_cast<nanoseconds>(durationS);  // nanoseconds are gone
+
+  EXPECT_EQ(durationS, cras::convertDuration<seconds>(durationChrono));
+  EXPECT_EQ(durationSN, cras::convertDuration<nanoseconds>(durationS));
+
+  EXPECT_EQ(1'000'000'000, (cras::convertDuration<rclcpp::Duration>(durationS).nanoseconds()));
 }
 
-bool operator==(const tm& t1, const tm& t2)
-{
+bool operator==(const tm& t1, const tm& t2) {
   return
     t1.tm_year == t2.tm_year &&
     t1.tm_mon == t2.tm_mon &&
@@ -695,8 +948,7 @@ TEST(TimeUtils, FromStructTm)  // NOLINT
   EXPECT_EQ(rclcpp::Time(1731505444, 0), cras::fromStructTm(t));
 }
 
-int main(int argc, char **argv)
-{
+int main(int argc, char**argv) {
   testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
 }
