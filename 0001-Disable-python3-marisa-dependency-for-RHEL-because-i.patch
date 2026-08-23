@@ -1,4 +1,4 @@
-From a0b420ab1eea68ddb0543d89060f9e4ec23f3814 Mon Sep 17 00:00:00 2001
+From 39bd74677322fd66bc7873c518df83874cdd7f8e Mon Sep 17 00:00:00 2001
 From: Martin Pecka <peckama2@fel.cvut.cz>
 Date: Tue, 13 Jan 2026 22:02:55 +0100
 Subject: [PATCH] Disable python3-marisa dependency for RHEL because it is not
@@ -9,7 +9,7 @@ Subject: [PATCH] Disable python3-marisa dependency for RHEL because it is not
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/package.xml b/package.xml
-index a060cce..a2b155d 100644
+index 9adf743..4b37013 100644
 --- a/package.xml
 +++ b/package.xml
 @@ -21,7 +21,7 @@
