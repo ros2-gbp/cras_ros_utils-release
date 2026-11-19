@@ -1,0 +1,282 @@
+ros-kilted-cras-py-common (4.1.0-1noble) noble; urgency=high
+
+  * Fixed build. Workaround for https://github.com/ament/ament_cmake/pull/645 .
+  * Converted package to ROS 2.
+  * Contributors: Martin Pecka
+
+ -- "Martin Pecka" <peckama2@fel.cvut.cz>  Wed, 18 Nov 2026 23:00:00 -0000
+
+ros-kilted-cras-py-common (2.5.1-1noble) noble; urgency=high
+
+
+
+ -- "Martin Pecka" <peckama2@fel.cvut.cz>  Mon, 17 Feb 2025 23:00:00 -0000
+
+ros-kilted-cras-py-common (2.5.0-1noble) noble; urgency=high
+
+  * plugin_utils: Fixed Python 2.7 compatibility.
+  * Added plugin_utils.
+  * string_utils: Added pretty_file_size()
+  * message_utils: Added msg_to_raw and raw_to_msg
+  * Fixed dependencies.
+  * image_encodings: Added isDepth().
+  * Added image_encodings.py and distortion_models.py .
+  * Contributors: Martin Pecka
+
+ -- "Martin Pecka" <peckama2@fel.cvut.cz>  Wed, 12 Feb 2025 23:00:00 -0000
+
+ros-kilted-cras-py-common (2.4.8-1noble) noble; urgency=high
+
+
+
+ -- "Martin Pecka" <peckama2@fel.cvut.cz>  Mon, 06 Jan 2025 23:00:00 -0000
+
+ros-kilted-cras-py-common (2.4.7-1noble) noble; urgency=high
+
+
+
+ -- "Martin Pecka" <peckama2@fel.cvut.cz>  Wed, 11 Dec 2024 23:00:00 -0000
+
+ros-kilted-cras-py-common (2.4.6-1noble) noble; urgency=high
+
+  * string_utils: Added iconvConvert(), transliterateToAscii() and toValidRosName() functions.
+  * Contributors: Martin Pecka
+
+ -- "Martin Pecka" <peckama2@fel.cvut.cz>  Wed, 11 Dec 2024 23:00:00 -0000
+
+ros-kilted-cras-py-common (2.4.5-1noble) noble; urgency=high
+
+
+
+ -- "Martin Pecka" <peckama2@fel.cvut.cz>  Fri, 01 Nov 2024 23:00:00 -0000
+
+ros-kilted-cras-py-common (2.4.4-1noble) noble; urgency=high
+
+
+
+ -- "Martin Pecka" <peckama2@fel.cvut.cz>  Fri, 13 Sep 2024 22:00:00 -0000
+
+ros-kilted-cras-py-common (2.4.3-1noble) noble; urgency=high
+
+
+
+ -- "Martin Pecka" <peckama2@fel.cvut.cz>  Fri, 13 Sep 2024 22:00:00 -0000
+
+ros-kilted-cras-py-common (2.4.2-1noble) noble; urgency=high
+
+  * log_utils: Addded log_once_identical() functions.
+  * log_utils: Fixed stack information for cras.log().
+  * Contributors: Martin Pecka
+
+ -- "Martin Pecka" <peckama2@fel.cvut.cz>  Wed, 04 Sep 2024 22:00:00 -0000
+
+ros-kilted-cras-py-common (2.4.1-1noble) noble; urgency=high
+
+
+
+ -- "Martin Pecka" <peckama2@fel.cvut.cz>  Tue, 03 Sep 2024 22:00:00 -0000
+
+ros-kilted-cras-py-common (2.4.0-1noble) noble; urgency=high
+
+  * string_utils: Fixed iconv functions when running with LC_ALL=C or other weird locale.
+  * Added python_utils.
+  * string_utils: Added methods for iconv-like conversions of strings and sanitization or ROS names.
+  * Contributors: Martin Pecka
+
+ -- "Martin Pecka" <peckama2@fel.cvut.cz>  Tue, 03 Sep 2024 22:00:00 -0000
+
+ros-kilted-cras-py-common (2.3.9-1noble) noble; urgency=high
+
+  * Removed catkin_lint buildfarm hacks.
+  * Contributors: Martin Pecka
+
+ -- "Martin Pecka" <peckama2@fel.cvut.cz>  Mon, 26 Feb 2024 23:00:00 -0000
+
+ros-kilted-cras-py-common (2.3.8-1noble) noble; urgency=high
+
+
+
+ -- "Martin Pecka" <peckama2@fel.cvut.cz>  Thu, 11 Jan 2024 23:00:00 -0000
+
+ros-kilted-cras-py-common (2.3.7-1noble) noble; urgency=high
+
+
+
+ -- "Martin Pecka" <peckama2@fel.cvut.cz>  Mon, 08 Jan 2024 23:00:00 -0000
+
+ros-kilted-cras-py-common (2.3.6-1noble) noble; urgency=high
+
+
+
+ -- "Martin Pecka" <peckama2@fel.cvut.cz>  Mon, 08 Jan 2024 23:00:00 -0000
+
+ros-kilted-cras-py-common (2.3.5-1noble) noble; urgency=high
+
+
+
+ -- "Martin Pecka" <peckama2@fel.cvut.cz>  Mon, 20 Nov 2023 23:00:00 -0000
+
+ros-kilted-cras-py-common (2.3.4-1noble) noble; urgency=high
+
+
+
+ -- "Martin Pecka" <peckama2@fel.cvut.cz>  Tue, 24 Oct 2023 22:00:00 -0000
+
+ros-kilted-cras-py-common (2.3.3-1noble) noble; urgency=high
+
+
+
+ -- "Martin Pecka" <peckama2@fel.cvut.cz>  Thu, 05 Oct 2023 22:00:00 -0000
+
+ros-kilted-cras-py-common (2.3.2-1noble) noble; urgency=high
+
+  * param_utils: Removed deprecated numpy aliases.
+  * Contributors: Martin Pecka
+
+ -- "Martin Pecka" <peckama2@fel.cvut.cz>  Thu, 05 Oct 2023 22:00:00 -0000
+
+ros-kilted-cras-py-common (2.3.1-1noble) noble; urgency=high
+
+
+
+ -- "Martin Pecka" <peckama2@fel.cvut.cz>  Wed, 12 Jul 2023 22:00:00 -0000
+
+ros-kilted-cras-py-common (2.3.0-1noble) noble; urgency=high
+
+  * Increased minimum CMake version to 3.10.2.
+  * Contributors: Martin Pecka
+
+ -- "Martin Pecka" <peckama2@fel.cvut.cz>  Tue, 11 Jul 2023 22:00:00 -0000
+
+ros-kilted-cras-py-common (2.2.3-1noble) noble; urgency=high
+
+
+
+ -- "Martin Pecka" <peckama2@fel.cvut.cz>  Thu, 15 Jun 2023 22:00:00 -0000
+
+ros-kilted-cras-py-common (2.2.2-1noble) noble; urgency=high
+
+  * ctypes_utils: Added ScalarAllocator.
+  * Contributors: Martin Pecka
+
+ -- "Martin Pecka" <peckama2@fel.cvut.cz>  Sun, 14 May 2023 22:00:00 -0000
+
+ros-kilted-cras-py-common (2.2.1-1noble) noble; urgency=high
+
+  * message_utils: Added dict_to_dynamic_config_msg().
+  * ctypes_utils: Added c_array() method.
+  * message_utils: Added get_srv_types() and get_cfg_module().
+  * Contributors: Martin Pecka
+
+ -- "Martin Pecka" <peckama2@fel.cvut.cz>  Sun, 14 May 2023 22:00:00 -0000
+
+ros-kilted-cras-py-common (2.2.0-1noble) noble; urgency=high
+
+
+
+ -- "Martin Pecka" <peckama2@fel.cvut.cz>  Sat, 08 Apr 2023 22:00:00 -0000
+
+ros-kilted-cras-py-common (2.1.2-1noble) noble; urgency=high
+
+
+
+ -- "Martin Pecka" <peckama2@fel.cvut.cz>  Thu, 09 Feb 2023 23:00:00 -0000
+
+ros-kilted-cras-py-common (2.1.1-1noble) noble; urgency=high
+
+
+
+ -- "Martin Pecka" <peckama2@fel.cvut.cz>  Tue, 07 Feb 2023 23:00:00 -0000
+
+ros-kilted-cras-py-common (2.1.0-1noble) noble; urgency=high
+
+  * ctypes_utils: Added specialized allocators for ROS messages and for rosconsole logs.
+  * string_utils: Register genpy Time and Duration for to_str() conversion, too.
+  * ctypes_utils: Do not add one byte to StringAlloc allocated size. The caller has to do it now.
+  * ctypes_utils: Autodetection of length of a BufferStringIO stream.
+  * ctypes_utils: Added get_ro_c_buffer.
+  * Added utilities for working with ctypes.
+  * Allow resetting nodes by topic.
+  * Added support for enums in to_str() and param utils.
+  * Hide tf2_ros includes in geometry_utils.py inside function calls.
+  * Contributors: Martin Pecka
+
+ -- "Martin Pecka" <peckama2@fel.cvut.cz>  Tue, 07 Feb 2023 23:00:00 -0000
+
+ros-kilted-cras-py-common (2.0.10-1noble) noble; urgency=high
+
+  * Fix test bug.
+  * Contributors: Martin Pecka
+
+ -- "Martin Pecka" <peckama2@fel.cvut.cz>  Wed, 23 Nov 2022 23:00:00 -0000
+
+ros-kilted-cras-py-common (2.0.9-1noble) noble; urgency=high
+
+  * Relay attribute access in GenericMessageSubscriber to the raw subscriber (to allow e.g. calling unsubscribe()).
+  * Contributors: Martin Pecka
+
+ -- "Martin Pecka" <peckama2@fel.cvut.cz>  Wed, 23 Nov 2022 23:00:00 -0000
+
+ros-kilted-cras-py-common (2.0.8-1noble) noble; urgency=high
+
+  * Pass connection header to user callback in GenericMessageSubscriber.
+  * Contributors: Martin Pecka
+
+ -- "Martin Pecka" <peckama2@fel.cvut.cz>  Wed, 23 Nov 2022 23:00:00 -0000
+
+ros-kilted-cras-py-common (2.0.7-1noble) noble; urgency=high
+
+  * Moved get_msg_type from type_utils to message_utils and added get_msg_field there.
+  * Contributors: Martin Pecka
+
+ -- "Martin Pecka" <peckama2@fel.cvut.cz>  Wed, 23 Nov 2022 23:00:00 -0000
+
+ros-kilted-cras-py-common (2.0.6-1noble) noble; urgency=high
+
+  * Added topic_utils and type_utils.
+  * Contributors: Martin Pecka
+
+ -- "Martin Pecka" <peckama2@fel.cvut.cz>  Wed, 23 Nov 2022 23:00:00 -0000
+
+ros-kilted-cras-py-common (2.0.5-1noble) noble; urgency=high
+
+  * Added static_transform_broadcaster docs to readme.
+  * Contributors: Martin Pecka
+
+ -- "Martin Pecka" <peckama2@fel.cvut.cz>  Sat, 22 Oct 2022 22:00:00 -0000
+
+ros-kilted-cras-py-common (2.0.4-1noble) noble; urgency=high
+
+  * Fixed StaticTransformBroadcaster on Noetic and added unit test for it.
+  * Added missing license notices.
+  * Contributors: Martin Pecka
+
+ -- "Martin Pecka" <peckama2@fel.cvut.cz>  Thu, 13 Oct 2022 22:00:00 -0000
+
+ros-kilted-cras-py-common (2.0.3-1noble) noble; urgency=high
+
+  * Improved time_utils, added node_utils.
+  * Added geometry_utils.py.
+  * Remove support for long integer type to achieve compatibility with Python 3.
+  * Extended functionality to get closer to cras_cpp_common.
+  * Improved readmes and added more badges to them.
+  * Contributors: Martin Pecka
+
+ -- "Martin Pecka" <peckama2@fel.cvut.cz>  Thu, 06 Oct 2022 22:00:00 -0000
+
+ros-kilted-cras-py-common (2.0.2-1noble) noble; urgency=high
+
+  * De-flake throttle test and enable catkin_lint when it has chance to run correctly.
+  * Added website links.
+  * Add linters and licenses.
+  * Contributors: Martin Pecka
+
+ -- "Martin Pecka" <peckama2@fel.cvut.cz>  Sun, 28 Aug 2022 22:00:00 -0000
+
+ros-kilted-cras-py-common (2.0.1-1noble) noble; urgency=high
+
+  * Moved hack_frame_id from cras_py_common to cras_topic_tools.
+
+ -- "Martin Pecka" <peckama2@fel.cvut.cz>  Thu, 25 Aug 2022 22:00:00 -0000
+
+
