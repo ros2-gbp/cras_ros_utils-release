@@ -1,0 +1,12 @@
+Source: ros-lyrical-cras-lint
+Section: misc
+Priority: optional
+Maintainer: "Martin Pecka" <peckama2@fel.cvut.cz>
+Build-Depends: debhelper (>= 9.0.0), ros-lyrical-ament-cmake-core, ros-lyrical-ament-cmake-test, ros-lyrical-ament-lint-common <!nocheck>, ros-lyrical-ros-workspace
+Homepage: https://index.ros.org/p/cras_lint
+Standards-Version: 3.9.2
+
+Package: ros-lyrical-cras-lint
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-lyrical-ament-cmake-core, ros-lyrical-ament-cmake-test, ros-lyrical-ament-lint-common, ros-lyrical-ros-workspace
+Description: Various utilities to work with bag files
